@@ -18,6 +18,10 @@
       "type": "build"
     },
     {
+      "name": "@types/jsonwebtoken",
+      "type": "build"
+    },
+    {
       "name": "@types/node",
       "type": "build"
     },
@@ -33,6 +37,10 @@
     },
     {
       "name": "axios",
+      "type": "build"
+    },
+    {
+      "name": "axios-mock-adapter",
       "type": "build"
     },
     {
@@ -93,6 +101,10 @@
     },
     {
       "name": "axios",
+      "type": "runtime"
+    },
+    {
+      "name": "jsonwebtoken",
       "type": "runtime"
     },
     {

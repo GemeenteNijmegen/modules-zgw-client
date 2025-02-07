@@ -35,6 +35,11 @@ export type GenerateClientConfiguration = {
    * Example: 'ztc' for Zaken API.
    */
   repoSubdirectory: string;
+  /**
+   * Oldest version makes sure no clients are generated before this version
+   * Example: '1.4.1' will not generate clients for 1.3.1
+   */
+  oldestVersion?: string;
 };
 
 /**
@@ -45,12 +50,14 @@ export function createClientConfig(
   name: string,
   repoSubdirectory: string,
   repositoryPath: string = gemmaRepositoryPath,
+  oldestVersion?: string,
 ): GenerateClientConfiguration {
   return {
     name,
     folderName: `${name}${generatedClientFolderPostfix}`,
     repositoryPath,
     repoSubdirectory,
+    oldestVersion,
   };
 }
 

@@ -2,15 +2,21 @@ import { GemeenteNijmegenTsPackage } from '@gemeentenijmegen/projen-project-type
 const project = new GemeenteNijmegenTsPackage({
   defaultReleaseBranch: 'main',
   description: 'Package that generates zgw clients and helpers.',
-  deps: ['openapi-typescript', 'swagger-typescript-api', 'ts-node', 'axios'],
+  deps: [
+    'openapi-typescript',
+    'swagger-typescript-api',
+    'ts-node',
+    'axios',
+    'jsonwebtoken',
+  ],
   devDeps: [
     '@gemeentenijmegen/projen-project-type',
     'axios',
     'dotenv',
     '@types/js-yaml', // Voeg type-definities voor js-yaml toe ivm openapi-typescript
     'json-schema-to-ts', // Installeer deze afhankelijkheid voor JSON schema types ivm openapi-typescript
-
-
+    '@types/jsonwebtoken',
+    'axios-mock-adapter',
   ],
   tsconfig: {
     compilerOptions: {
