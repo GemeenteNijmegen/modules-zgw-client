@@ -1,5 +1,6 @@
 {
   "name": "modules-zgw-client",
+  "description": "Package that generates zgw clients and helpers.",
   "repository": {
     "type": "git",
     "url": "modules-zgw-client"
@@ -28,20 +29,30 @@
     "@gemeentenijmegen/projen-project-type": "^1.8.7",
     "@stylistic/eslint-plugin": "^2",
     "@types/jest": "^29.5.14",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.13.1",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
+    "axios": "^1.7.9",
     "commit-and-tag-version": "^12",
     "constructs": "^10.0.0",
+    "dotenv": "^16.4.7",
     "eslint": "^9",
     "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-import": "^2.31.0",
     "jest": "^29.7.0",
     "jest-junit": "^16",
+    "json-schema-to-ts": "^3.1.1",
     "projen": "^0.91.8",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "openapi-typescript": "^7.6.1",
+    "swagger-typescript-api": "^13.0.23",
+    "ts-node": "^10.9.2"
   },
   "main": "lib/index.js",
   "license": "EUPL-1.2",
@@ -51,6 +62,13 @@
   "version": "0.0.0",
   "jest": {
     "coverageProvider": "v8",
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "roots": [
+      "test",
+      "src"
+    ],
     "testMatch": [
       "<rootDir>/@(src|test)/**/*(*.)@(spec|test).ts?(x)",
       "<rootDir>/@(src|test)/**/__tests__/**/*.ts?(x)",
