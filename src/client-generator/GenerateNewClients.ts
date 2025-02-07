@@ -179,8 +179,8 @@ export class GenerateNewClients {
       // Create or update the `index.ts` file
       const indexPath = path.join(clientFolderPath, 'index.ts');
       const indexContent = [
-        ...validVersions.map(version => `export * as v${version.replace(/\./g, '_')} from "./${version}";`),
-        `export * from "./${latestVersion}"; // Latest version`,
+        ...validVersions.map(version => `export * as v${version.replace(/\./g, '_')} from './${version}';`),
+        `export * from './${latestVersion}'; // Latest version`,
       ].join('\n');
 
       await fs.writeFile(indexPath, indexContent, 'utf8');
