@@ -1,9 +1,10 @@
 import { GemeenteNijmegenTsPackage } from '@gemeentenijmegen/projen-project-type';
 import { addZgwClientsUpdateWorkflow } from './src/client-updates-custom-workflow';
-
+const projectName = '@gemeentenijmegen/modules-zgw-client';
 const project = new GemeenteNijmegenTsPackage({
   defaultReleaseBranch: 'main',
-  name: 'modules-zgw-client',
+  name: projectName,
+  packageName: projectName,
   description: 'Package that generates zgw clients and helpers.',
   repository: 'https://github.com/GemeenteNijmegen/modules-zgw-client',
   deps: [

@@ -1,5 +1,5 @@
 {
-  "name": "modules-zgw-client",
+  "name": "@gemeentenijmegen/modules-zgw-client",
   "description": "Package that generates zgw clients and helpers.",
   "repository": {
     "type": "git",
