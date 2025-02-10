@@ -112,6 +112,10 @@
       "type": "runtime"
     },
     {
+      "name": "projen",
+      "type": "runtime"
+    },
+    {
       "name": "swagger-typescript-api",
       "type": "runtime"
     },

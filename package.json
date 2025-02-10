@@ -54,6 +54,7 @@
     "axios": "^1.7.9",
     "jsonwebtoken": "^9.0.2",
     "openapi-typescript": "^7.6.1",
+    "projen": "^0.91.8",
     "swagger-typescript-api": "^13.0.23",
     "ts-node": "^10.9.2"
   },

@@ -32,9 +32,11 @@ describe('CatalogiHttpClient', () => {
         iss: 'test-client-id',
         iat: expect.any(Number),
         client_id: 'test-client-id',
+        user_id: 'test-client-id',
+        user_representation: 'test-client-id',
       },
       'test-client-secret',
-      { expiresIn: '1h' },
+      { expiresIn: '12h' },
     );
     expect(client.securityData.token).toBe('mocked-jwt-token');
   });
