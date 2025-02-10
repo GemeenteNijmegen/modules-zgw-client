@@ -8,6 +8,7 @@ export function addZgwClientsUpdateWorkflow(project: Project) {
     throw new Error('ZGW Clients Update Workflow requires a GitHub project.');
   }
   const workflow = new GithubWorkflow(github, 'update-zgw-clients');
+  const BASE_BRANCH = 'acceptance';
 
   workflow.on({
     workflowDispatch: {},
@@ -31,7 +32,7 @@ export function addZgwClientsUpdateWorkflow(project: Project) {
         name: 'Checkout Repository',
         uses: 'actions/checkout@v4',
         with: {
-          ref: 'acceptance',
+          ref: BASE_BRANCH,
         },
       },
       {
@@ -74,7 +75,7 @@ export function addZgwClientsUpdateWorkflow(project: Project) {
         name: 'Checkout Repository',
         uses: 'actions/checkout@v4',
         with: {
-          ref: 'acceptance',
+          ref: BASE_BRANCH,
         },
       },
       {
@@ -102,7 +103,7 @@ export function addZgwClientsUpdateWorkflow(project: Project) {
           'commit-message': 'chore(clients): update ZGW clients',
           'branch': 'github-actions/update-zgw-clients',
           'title': 'chore(clients): update ZGW clients',
-          'labels': 'auto-merge',
+          'labels': 'needs-review',
           'body': 'Automatically generated update of ZGW clients.\n\n[Workflow Run]: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}',
           'author': 'github-actions <github-actions@github.com>',
           'committer': 'github-actions <github-actions@github.com>',
