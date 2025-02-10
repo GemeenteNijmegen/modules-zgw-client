@@ -3,7 +3,9 @@ import { addZgwClientsUpdateWorkflow } from './src/client-updates-custom-workflo
 
 const project = new GemeenteNijmegenTsPackage({
   defaultReleaseBranch: 'main',
+  name: 'modules-zgw-client',
   description: 'Package that generates zgw clients and helpers.',
+  repository: 'https://github.com/GemeenteNijmegen/modules-zgw-client',
   deps: [
     'openapi-typescript',
     'swagger-typescript-api',
@@ -33,9 +35,7 @@ const project = new GemeenteNijmegenTsPackage({
     },
   },
   gitignore: ['**/output/', '**/testmockforjest-generated-client/'],
-  name: 'modules-zgw-client',
   projenrcTs: true,
-  repository: 'modules-zgw-client',
 });
 
 // Custom workflow om zgw clients te updaten en pr klaar te zetten.
