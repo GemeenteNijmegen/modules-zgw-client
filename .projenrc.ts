@@ -1,4 +1,6 @@
 import { GemeenteNijmegenTsPackage } from '@gemeentenijmegen/projen-project-type';
+import { addZgwClientsUpdateWorkflow } from './src/client-updates-custom-workflow';
+
 const project = new GemeenteNijmegenTsPackage({
   defaultReleaseBranch: 'main',
   description: 'Package that generates zgw clients and helpers.',
@@ -8,6 +10,7 @@ const project = new GemeenteNijmegenTsPackage({
     'ts-node',
     'axios',
     'jsonwebtoken',
+    'projen'
   ],
   devDeps: [
     '@gemeentenijmegen/projen-project-type',
@@ -33,9 +36,9 @@ const project = new GemeenteNijmegenTsPackage({
   name: 'modules-zgw-client',
   projenrcTs: true,
   repository: 'modules-zgw-client',
-
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // packageName: undefined,  /* The "name" in package.json. */
 });
+
+// Custom workflow om zgw clients te updaten en pr klaar te zetten.
+// Alleen relevant in dit project
+addZgwClientsUpdateWorkflow(project);
 project.synth();

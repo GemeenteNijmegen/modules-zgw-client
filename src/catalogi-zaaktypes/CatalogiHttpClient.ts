@@ -50,9 +50,11 @@ export class CatalogiHttpClient extends HttpClient<SecurityDataType> {
         iss: this.clientId,
         iat: Math.floor(Date.now() / 1000),
         client_id: this.clientId,
+        user_id: this.clientId,
+        user_representation: this.clientId,
       },
       this.clientSecret,
-      { expiresIn: '1h' }, // Set token expiration to 1 hour
+      { expiresIn: '12h' }, // Set token expiration to 12 hours
     );
   }
 
