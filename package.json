@@ -3,7 +3,7 @@
   "description": "Package that generates zgw clients and helpers.",
   "repository": {
     "type": "git",
-    "url": "modules-zgw-client"
+    "url": "https://github.com/GemeenteNijmegen/modules-zgw-client"
   },
   "scripts": {
     "build": "npx projen build",

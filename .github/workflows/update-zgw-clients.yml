@@ -61,7 +61,7 @@ jobs:
           commit-message: "chore(clients): update ZGW clients"
           branch: github-actions/update-zgw-clients
           title: "chore(clients): update ZGW clients"
-          labels: auto-merge
+          labels: needs-review
           body: |-
             Automatically generated update of ZGW clients.
 
