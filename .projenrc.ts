@@ -10,7 +10,7 @@ const project = new GemeenteNijmegenTsPackage({
     'ts-node',
     'axios',
     'jsonwebtoken',
-    'projen'
+    'projen',
   ],
   devDeps: [
     '@gemeentenijmegen/projen-project-type',
