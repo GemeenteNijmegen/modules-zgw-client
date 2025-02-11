@@ -4,6 +4,7 @@ import { ClientGenerator } from './ClientGenerator';
 import { GenerateClientConfiguration, generateClientConfigurations } from './GenerateClientConfiguration';
 import { ScanGeneratedFolders } from './ScanGeneratedFolders';
 import { VersionScanner, VersionInfo } from './VersionScanner';
+import { getLatestVersion, isVersionGreaterOrEqual } from './VersionUtils';
 
 export class GenerateNewClients {
   private readonly clientConfigs: GenerateClientConfiguration[];
@@ -54,38 +55,20 @@ export class GenerateNewClients {
     return versions;
   }
 
-  /**
-     * Determine which versions need to be generated.
-     */
   private findNewVersions(
     availableVersions: VersionInfo[],
     existingVersions: string[],
-    config: GenerateClientConfiguration, // Toegevoegd om toegang te krijgen tot `oldestVersion`
+    config: GenerateClientConfiguration,
   ): VersionInfo[] {
     if (!config.oldestVersion) {
-      // Als geen oudste versie is opgegeven, filter alleen bestaande versies eruit
       return availableVersions.filter(version => !existingVersions.includes(version.version));
     }
 
-    const oldestVersion: string = config.oldestVersion; // Ensures TypeScript sees this as a string
+    const oldestVersion: string = config.oldestVersion;
 
-    // Filter alle versies die ouder zijn dan `config.oldestVersion`
     return availableVersions.filter(version =>
       !existingVersions.includes(version.version) &&
-        this.isVersionGreaterOrEqual(version.version, oldestVersion), // Alleen versies >= oldestVersion
-    );
-  }
-  /**
-   * Helper: Compare semantic version strings (e.g., "1.3.0" >= "1.2.1").
-   */
-  private isVersionGreaterOrEqual(version: string, minVersion: string): boolean {
-    const [majorV, minorV, patchV] = version.split('.').map(Number);
-    const [majorM, minorM, patchM] = minVersion.split('.').map(Number);
-
-    return (
-      majorV > majorM ||
-        (majorV === majorM && minorV > minorM) ||
-        (majorV === majorM && minorV === minorM && patchV >= patchM)
+      isVersionGreaterOrEqual(version.version, oldestVersion),
     );
   }
 
@@ -177,17 +160,6 @@ export class GenerateNewClients {
     return path.join(this.projectSrcPath, config.folderName, version);
   }
 
-  /**
-     * Get the latest version from a list of version folders.
-     */
-  private getLatestVersion(versions: string[]): string {
-    return versions.sort((a, b) => {
-      const [majorA, minorA, patchA] = a.split('.').map(Number);
-      const [majorB, minorB, patchB] = b.split('.').map(Number);
-      return majorB - majorA || minorB - minorA || patchB - patchA;
-    })[0];
-  }
-
   private async updateLatestVersion(config: GenerateClientConfiguration) {
     try {
       const clientFolderPath = path.join(this.projectSrcPath, config.folderName);
@@ -202,7 +174,7 @@ export class GenerateNewClients {
       }
 
       // Get the latest version
-      const latestVersion = this.getLatestVersion(validVersions);
+      const latestVersion = getLatestVersion(validVersions);
       console.log(`Latest version for ${config.name}: ${latestVersion}`);
 
       // Create or update the `index.ts` file

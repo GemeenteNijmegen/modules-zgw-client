@@ -13,6 +13,7 @@ jest.mock('../ClientGenerator', () => {
     })),
   };
 });
+/* eslint-disable import/order */
 import { ClientGenerator } from '../ClientGenerator';
 
 jest.mock('fs/promises', () => ({
@@ -22,6 +23,7 @@ jest.mock('fs/promises', () => ({
   stat: jest.fn().mockResolvedValue({ size: 100 }),
   readdir: jest.fn().mockResolvedValue(['1.3.0', '1.4.0']),
 }));
+/* eslint-disable import/order */
 import * as fs from 'fs/promises'; // Import after mock
 
 describe('GenerateNewClients', () => {
