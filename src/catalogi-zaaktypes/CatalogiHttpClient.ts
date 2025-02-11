@@ -1,12 +1,9 @@
 import * as jwt from 'jsonwebtoken';
 import { HttpClient, FullRequestParams } from '../catalogi-generated-client';
 
-// Define the SecurityDataType interface
 interface SecurityDataType {
   token: string;
 }
-
-// Define configuration for the CatalogiHttpClient
 interface CatalogiHttpClientConfig {
   clientId: string;
   clientSecret: string;
@@ -58,17 +55,7 @@ export class CatalogiHttpClient extends HttpClient<SecurityDataType> {
     );
   }
 
-  /**
-   * Refreshes the security token and updates the client.
-   */
-  public refreshToken(): void {
-    const newToken = this.createToken();
-    this.setSecurityData({ token: newToken });
-    console.debug('Token refreshed.');
-  }
-
-
-  /**
+ /**
  * Wrapper for the request method with additional logging or custom logic if needed.
  */
   public async catalogiRequest<T = any>(params: FullRequestParams): Promise<T> {
