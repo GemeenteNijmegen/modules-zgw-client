@@ -47,6 +47,7 @@ describe('GenerateNewClients', () => {
     jest.spyOn(VersionScanner.prototype, 'fetchSpecificVersions')
       .mockResolvedValue(
         [
+          { version: '1.1.1', download_url: 'https://example.com/1.1.1.yaml' },
           { version: '1.2.0', download_url: 'https://example.com/1.2.0.yaml' },
           { version: '1.3.0', download_url: 'https://example.com/1.3.0.yaml' },
           { version: '1.4.0', download_url: 'https://example.com/1.4.0.yaml' },
@@ -60,15 +61,25 @@ describe('GenerateNewClients', () => {
     await generateNewClients.generateClients();
     expect(ClientGenerator as jest.Mock).toHaveBeenCalled(); // Calls constructor
 
+    // Should be generated because it does not exist in local folders
+    // And is after old versions
     expect(mockGenerateClient).toHaveBeenCalledWith(
       expect.stringContaining('1.4.0'),
       expect.any(String),
     );
-    // Deze test gaat nu met opzet fout 
-    // tot ik de codegeimplementeerd heb om oude versies uit te sluiten
-    // in findNewVersions methode
+    // Should not be generated because it already exists in the local folders
+    expect(mockGenerateClient).not.toHaveBeenCalledWith(
+      expect.stringContaining("1.3.0"),
+      expect.any(String)
+    );
+    // Old version should not be included
     expect(mockGenerateClient).not.toHaveBeenCalledWith(
       expect.stringContaining("1.2.0"),
+      expect.any(String)
+    );
+        // Old version should not be included
+    expect(mockGenerateClient).not.toHaveBeenCalledWith(
+      expect.stringContaining("1.1.1"),
       expect.any(String)
     );
 
