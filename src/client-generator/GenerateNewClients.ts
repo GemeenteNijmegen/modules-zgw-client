@@ -24,7 +24,7 @@ export class GenerateNewClients {
       console.log(`Checking versions for client: ${config.name}`);
       const availableVersions = await this.fetchRemoteVersions(config);
       const existingVersions = this.getLocalVersions(config);
-      const newVersions = this.findNewVersions(availableVersions, existingVersions);
+      const newVersions = this.findNewVersions(availableVersions, existingVersions, config);
       await this.generateMissingClients(config, newVersions);
 
       // Update the latest version in the index
@@ -57,13 +57,36 @@ export class GenerateNewClients {
   /**
      * Determine which versions need to be generated.
      */
-  private findNewVersions(availableVersions: VersionInfo[], existingVersions: string[]): VersionInfo[] {
-    // Add param config: GenerateClientConfiguration
-    // Add filter where all versions before based on config.oldestVersion (string)
-    // All version BEFORE oldestversion should not be included in the endresult availableversions
-    // So oldestVersion 1.4.1 should be included if it has not been created as a folder (which means it is not in existingVersions)
+  private findNewVersions(
+    availableVersions: VersionInfo[],
+    existingVersions: string[],
+    config: GenerateClientConfiguration, // Toegevoegd om toegang te krijgen tot `oldestVersion`
+  ): VersionInfo[] {
+    if (!config.oldestVersion) {
+      // Als geen oudste versie is opgegeven, filter alleen bestaande versies eruit
+      return availableVersions.filter(version => !existingVersions.includes(version.version));
+    }
 
-    return availableVersions.filter(version => !existingVersions.includes(version.version));
+    const oldestVersion: string = config.oldestVersion; // Ensures TypeScript sees this as a string
+
+    // Filter alle versies die ouder zijn dan `config.oldestVersion`
+    return availableVersions.filter(version =>
+      !existingVersions.includes(version.version) &&
+        this.isVersionGreaterOrEqual(version.version, oldestVersion), // Alleen versies >= oldestVersion
+    );
+  }
+  /**
+   * Helper: Compare semantic version strings (e.g., "1.3.0" >= "1.2.1").
+   */
+  private isVersionGreaterOrEqual(version: string, minVersion: string): boolean {
+    const [majorV, minorV, patchV] = version.split('.').map(Number);
+    const [majorM, minorM, patchM] = minVersion.split('.').map(Number);
+
+    return (
+      majorV > majorM ||
+        (majorV === majorM && minorV > minorM) ||
+        (majorV === majorM && minorV === minorM && patchV >= patchM)
+    );
   }
 
   /**

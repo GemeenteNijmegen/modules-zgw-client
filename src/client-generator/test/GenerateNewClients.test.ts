@@ -69,19 +69,18 @@ describe('GenerateNewClients', () => {
     );
     // Should not be generated because it already exists in the local folders
     expect(mockGenerateClient).not.toHaveBeenCalledWith(
-      expect.stringContaining("1.3.0"),
-      expect.any(String)
+      expect.stringContaining('1.3.0'),
+      expect.any(String),
     );
     // Old version should not be included
     expect(mockGenerateClient).not.toHaveBeenCalledWith(
-      expect.stringContaining("1.2.0"),
-      expect.any(String)
+      expect.stringContaining('1.2.0'),
+      expect.any(String),
     );
-        // Old version should not be included
+    // Old version should not be included
     expect(mockGenerateClient).not.toHaveBeenCalledWith(
-      expect.stringContaining("1.1.1"),
-      expect.any(String)
+      expect.stringContaining('1.1.1'),
+      expect.any(String),
     );
-
   });
 });
