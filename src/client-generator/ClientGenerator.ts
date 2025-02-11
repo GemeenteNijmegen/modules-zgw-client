@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'path';
-import openapiTS, { astToString } from 'openapi-typescript';
 import { generateApi } from 'swagger-typescript-api';
 
 
@@ -19,13 +18,6 @@ export class ClientGenerator {
     }
 
     try {
-      // Generate TypeScript types with openapi-typescript
-      const openApiContent = fs.readFileSync(openApiPath, 'utf8');
-      const parsedOpenApiFile = await openapiTS(openApiContent); // Generates raw TypeScript code as a string
-      const typesString = astToString(parsedOpenApiFile);
-      const typesOutputPath = path.join(versionPath, 'types.ts');
-      fs.writeFileSync(typesOutputPath, typesString);
-
       // Generate API client using swagger-typescript-api
       const apiOutputPath = path.resolve(versionPath, 'api');
       await generateApi({
@@ -81,7 +73,6 @@ export class ClientGenerator {
 
       // Generate main index file
       const indexFileContent = `
-        export * from './types';
         export * from './api';
       `;
       const indexOutputPath = path.join(versionPath, 'index.ts');
@@ -93,7 +84,12 @@ export class ClientGenerator {
       throw error;
     }
   }
-
+  /**
+ * Makes sure type names are formatted without hyphens
+ * Type names with hyphens in index.ts will not work
+ * @param input
+ * @returns
+ */
   toFormattedName(input: string): string {
     return input
       .split(/[-_\s]/)

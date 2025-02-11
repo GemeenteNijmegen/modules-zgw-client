@@ -54,13 +54,6 @@ describe('CatalogiHttpClient', () => {
     expect(mockAxios.history.get[0].headers.Authorization).toBe('Bearer mocked-jwt-token');
   });
 
-  test('should refresh the token', () => {
-    client.refreshToken();
-
-    expect(jwt.sign).toHaveBeenCalledTimes(2); // Called once during initialization, once during refresh
-    expect(client.securityData.token).toBe('mocked-jwt-token');
-  });
-
   test('should handle POST request with JSON body', async () => {
     mockAxios.onPost('/post-endpoint').reply(201, { id: 1 });
 

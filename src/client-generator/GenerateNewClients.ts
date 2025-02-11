@@ -4,6 +4,7 @@ import { ClientGenerator } from './ClientGenerator';
 import { GenerateClientConfiguration, generateClientConfigurations } from './GenerateClientConfiguration';
 import { ScanGeneratedFolders } from './ScanGeneratedFolders';
 import { VersionScanner, VersionInfo } from './VersionScanner';
+import { getLatestVersion, isVersionGreaterOrEqual } from './VersionUtils';
 
 export class GenerateNewClients {
   private readonly clientConfigs: GenerateClientConfiguration[];
@@ -24,7 +25,7 @@ export class GenerateNewClients {
       console.log(`Checking versions for client: ${config.name}`);
       const availableVersions = await this.fetchRemoteVersions(config);
       const existingVersions = this.getLocalVersions(config);
-      const newVersions = this.findNewVersions(availableVersions, existingVersions);
+      const newVersions = this.findNewVersions(availableVersions, existingVersions, config);
       await this.generateMissingClients(config, newVersions);
 
       // Update the latest version in the index
@@ -54,11 +55,21 @@ export class GenerateNewClients {
     return versions;
   }
 
-  /**
-     * Determine which versions need to be generated.
-     */
-  private findNewVersions(availableVersions: VersionInfo[], existingVersions: string[]): VersionInfo[] {
-    return availableVersions.filter(version => !existingVersions.includes(version.version));
+  private findNewVersions(
+    availableVersions: VersionInfo[],
+    existingVersions: string[],
+    config: GenerateClientConfiguration,
+  ): VersionInfo[] {
+    if (!config.oldestVersion) {
+      return availableVersions.filter(version => !existingVersions.includes(version.version));
+    }
+
+    const oldestVersion: string = config.oldestVersion;
+
+    return availableVersions.filter(version =>
+      !existingVersions.includes(version.version) &&
+      isVersionGreaterOrEqual(version.version, oldestVersion),
+    );
   }
 
   /**
@@ -76,6 +87,7 @@ export class GenerateNewClients {
       const { openApiPath } = await this.createVersionFolderWithYaml(config, version, versionPath);
       const clientGenerator = new ClientGenerator();
       try {
+        console.log(`TEST: should call clientgenerator after this for: ${version}`);
         await clientGenerator.generateClient(openApiPath, versionPath);
       } catch (error: any) {
         const errorMessage = `ClientGenerator failed for ${config.name} ${version.version} - OpenAPI Path: ${openApiPath}`;
@@ -148,17 +160,6 @@ export class GenerateNewClients {
     return path.join(this.projectSrcPath, config.folderName, version);
   }
 
-  /**
-     * Get the latest version from a list of version folders.
-     */
-  private getLatestVersion(versions: string[]): string {
-    return versions.sort((a, b) => {
-      const [majorA, minorA, patchA] = a.split('.').map(Number);
-      const [majorB, minorB, patchB] = b.split('.').map(Number);
-      return majorB - majorA || minorB - minorA || patchB - patchA;
-    })[0];
-  }
-
   private async updateLatestVersion(config: GenerateClientConfiguration) {
     try {
       const clientFolderPath = path.join(this.projectSrcPath, config.folderName);
@@ -173,7 +174,7 @@ export class GenerateNewClients {
       }
 
       // Get the latest version
-      const latestVersion = this.getLatestVersion(validVersions);
+      const latestVersion = getLatestVersion(validVersions);
       console.log(`Latest version for ${config.name}: ${latestVersion}`);
 
       // Create or update the `index.ts` file
