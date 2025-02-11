@@ -23,9 +23,12 @@ export interface GitHubTreeNode {
 export interface GitHubTree {
   tree: GitHubTreeNode[];
 }
-
+/**
+ * Scans a github repository for versions of openapi.yaml files
+ * Right now tailored to gemma-zaken ztc, zrc and drc folders on Github
+ */
 export class VersionScanner {
-  private baseUrl: string;
+  private baseUrl: string; // Github api baseurl
   private repositoryPath: string;
   private branch: string;
   private apiSpecPath: string;
@@ -48,7 +51,8 @@ export class VersionScanner {
   }
 
   /**
-     * Veilige fetch-methode zonder expliciete cancel()-aanroep (door openhandles in jest)
+     * Safe fetch-methode without cancel()-call (because of openhandles in jest)
+     * Not perfect as of now, revisit later
      */
   private async safeFetch<T>(url: string): Promise<T> {
     this.log(`Fetching URL: ${url}`);
@@ -61,6 +65,9 @@ export class VersionScanner {
     return response.json() as Promise<T>;
   }
 
+  /**
+   * Gets the entire github folder tree in one call to prevent recursive multiple api calls to github (rate-limit)
+   */
   private async fetchFullTree(): Promise<GitHubTreeNode[]> {
     const url = `${this.baseUrl}/${this.repositoryPath}/git/trees/${this.branch}?recursive=1`;
     this.log(`Fetching full tree from: ${url}`);

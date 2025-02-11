@@ -49,8 +49,8 @@ export type GenerateClientConfiguration = {
 export function createClientConfig(
   name: string,
   repoSubdirectory: string,
-  repositoryPath: string = gemmaRepositoryPath,
   oldestVersion?: string,
+  repositoryPath: string = gemmaRepositoryPath,
 ): GenerateClientConfiguration {
   return {
     name,
@@ -65,7 +65,7 @@ export function createClientConfig(
  * List of configurations for generating clients.
  */
 export const generateClientConfigurations: GenerateClientConfiguration[] = [
-  createClientConfig('catalogi', 'ztc'),
-  createClientConfig('zaken', 'zrc'),
-  createClientConfig('documenten', 'drc'),
+  createClientConfig('catalogi', 'ztc', '1.2.1'),
+  createClientConfig('zaken', 'zrc', '1.4.1'),
+  createClientConfig('documenten', 'drc', '1.4.3'),
 ];

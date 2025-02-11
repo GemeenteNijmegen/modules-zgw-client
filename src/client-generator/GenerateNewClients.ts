@@ -58,6 +58,11 @@ export class GenerateNewClients {
      * Determine which versions need to be generated.
      */
   private findNewVersions(availableVersions: VersionInfo[], existingVersions: string[]): VersionInfo[] {
+    // Add param config: GenerateClientConfiguration
+    // Add filter where all versions before based on config.oldestVersion (string)
+    // All version BEFORE oldestversion should not be included in the endresult availableversions
+    // So oldestVersion 1.4.1 should be included if it has not been created as a folder (which means it is not in existingVersions)
+
     return availableVersions.filter(version => !existingVersions.includes(version.version));
   }
 
@@ -76,6 +81,7 @@ export class GenerateNewClients {
       const { openApiPath } = await this.createVersionFolderWithYaml(config, version, versionPath);
       const clientGenerator = new ClientGenerator();
       try {
+        console.log(`TEST: should call clientgenerator after this for: ${version}`);
         await clientGenerator.generateClient(openApiPath, versionPath);
       } catch (error: any) {
         const errorMessage = `ClientGenerator failed for ${config.name} ${version.version} - OpenAPI Path: ${openApiPath}`;
