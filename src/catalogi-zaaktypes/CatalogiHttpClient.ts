@@ -55,7 +55,7 @@ export class CatalogiHttpClient extends HttpClient<SecurityDataType> {
     );
   }
 
- /**
+  /**
  * Wrapper for the request method with additional logging or custom logic if needed.
  */
   public async catalogiRequest<T = any>(params: FullRequestParams): Promise<T> {

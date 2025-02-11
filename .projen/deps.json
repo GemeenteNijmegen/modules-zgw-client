@@ -14,10 +14,6 @@
       "type": "build"
     },
     {
-      "name": "@types/js-yaml",
-      "type": "build"
-    },
-    {
       "name": "@types/jsonwebtoken",
       "type": "build"
     },
@@ -33,10 +29,6 @@
     {
       "name": "@typescript-eslint/parser",
       "version": "^8",
-      "type": "build"
-    },
-    {
-      "name": "axios",
       "type": "build"
     },
     {
@@ -105,10 +97,6 @@
     },
     {
       "name": "jsonwebtoken",
-      "type": "runtime"
-    },
-    {
-      "name": "openapi-typescript",
       "type": "runtime"
     },
     {

@@ -8,25 +8,22 @@ const project = new GemeenteNijmegenTsPackage({
   description: 'Package that generates zgw clients and helpers.',
   repository: 'https://github.com/GemeenteNijmegen/modules-zgw-client',
   deps: [
-    'openapi-typescript',
-    'swagger-typescript-api',
-    'ts-node',
-    'axios',
+    'swagger-typescript-api', // Generates client, always has to be mocked in tests - module not commonjs
+    'ts-node', // To run class in github workflow
+    'axios', // Clients generated with axios, fetch does not generate a proper class
     'jsonwebtoken',
-    'projen',
+    'projen', // Needed in deps to make client-updates-custom-workflow
   ],
   devDeps: [
     '@gemeentenijmegen/projen-project-type',
-    'axios',
-    'dotenv',
-    '@types/js-yaml', // Voeg type-definities voor js-yaml toe ivm openapi-typescript
+    'dotenv', // Needed to use .env vars
     'json-schema-to-ts', // Installeer deze afhankelijkheid voor JSON schema types ivm openapi-typescript
     '@types/jsonwebtoken',
-    'axios-mock-adapter',
+    'axios-mock-adapter', // For testing
   ],
   tsconfig: {
     compilerOptions: {
-      skipLibCheck: true, // Add skipLibCheck here
+      skipLibCheck: true, // Unused lib dependencies return issues when building otherwise
     },
   },
   jestOptions: {
@@ -39,7 +36,7 @@ const project = new GemeenteNijmegenTsPackage({
   projenrcTs: true,
 });
 
-// Custom workflow om zgw clients te updaten en pr klaar te zetten.
-// Alleen relevant in dit project
+// Custom workflow to update zgw clients based on vng gemma-zaken github
+// Only used in this project - otherwise it would be located in modules projen
 addZgwClientsUpdateWorkflow(project);
 project.synth();
