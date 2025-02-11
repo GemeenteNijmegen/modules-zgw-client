@@ -1,4 +1,4 @@
-import { getLatestVersion, isVersionGreaterOrEqual } from '../VersionUtils'; // Adjust path if necessary
+import { getLatestVersion, isVersionGreaterOrEqual } from '../VersionUtils';
 
 describe('getLatestVersion', () => {
   test.each([
