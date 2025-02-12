@@ -1,5 +1,7 @@
 import { CatalogiHttpClient } from './CatalogiHttpClient';
 import * as catalogi from '../catalogi-generated-client';
+import { getAllPaginatedResults } from '../pagination-helper';
+
 
 /**
  * Provides methods to retrieve and manage Zaaktypes grouped by their identificatie.
@@ -13,31 +15,24 @@ export class VersionedZaaktypes {
   }
 
   /**
-   * Fetches all zaaktypes from the API and groups them by their identificatie.
-   * @returns Promise<void>
+   * Fetches all zaaktypes from the API using pagination and groups them by their identificatie.
    */
   public async fetchAndGroupZaaktypes(): Promise<void> {
-    const response = await this.httpClient.catalogiRequest<catalogi.ZaakType[]>({
-      path: '/zaaktypen',
-      method: 'GET',
-    });
+    const api = new catalogi.Zaaktypen(this.httpClient);
+    const allZaaktypes = await getAllPaginatedResults(api.zaaktypeList, {});
 
-    this.zaaktypesByIdentificatie = response.reduce<Record<string, catalogi.ZaakType[]>>(
-      (acc, zaaktype) => {
-        const key = zaaktype.identificatie;
-        if (!acc[key]) {
-          acc[key] = [];
-        }
-        acc[key].push(zaaktype);
-        return acc;
-      },
-      {},
-    );
+    this.zaaktypesByIdentificatie = allZaaktypes.reduce((acc, zaaktype) => {
+      const identificatie = zaaktype.identificatie ?? 'onbekend';
+      if (!acc[identificatie]) {
+        acc[identificatie] = [];
+      }
+      acc[identificatie].push(zaaktype);
+      return acc;
+    }, {} as Record<string, catalogi.ZaakType[]>);
   }
 
   /**
    * Retrieves all unique identificaties of the zaaktypes.
-   * @returns string[] - List of unique identificaties.
    */
   public getUniqueIdentificaties(): string[] {
     return Object.keys(this.zaaktypesByIdentificatie);
@@ -45,14 +40,6 @@ export class VersionedZaaktypes {
 
   /**
    * Retrieves all versions of a Zaaktype by its identificatie.
-   * Each version includes its validity period.
-   *
-   * @param identificatie - The identificatie of the Zaaktype.
-   * @returns Array<{
-   *   datumBeginGeldigheid: string;
-   *   datumEindeGeldigheid?: string;
-   * }> - List of versions with their validity periods.
-   * @throws Error if the identificatie does not exist.
    */
   public getVersionsByIdentificatie(
     identificatie: string,
@@ -76,11 +63,8 @@ export class VersionedZaaktypes {
 
   /**
    * Retrieves all zaaktypes grouped by their identificatie.
-   * @returns Record<string, catalogi.Zaaktype[]> - Zaaktypes grouped by identificatie.
    */
   public getGroupedZaaktypes(): Record<string, catalogi.ZaakType[]> {
     return this.zaaktypesByIdentificatie;
   }
-
-  //TODO: add method to retrieve latest version of a zaaktype by identificatie
 }

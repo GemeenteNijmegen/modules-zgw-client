@@ -4,11 +4,23 @@ This package generates ZGW-clients based on the api-specifications in the [VNG G
 
 The package also includes helper classes and methods for the ZGW api's.
 
-### How to start
+### Using the package
+https://www.npmjs.com/package/@gemeentenijmegen/modules-zgw-client
+
+Add `@gemeentenijmegen/modules-zgw-client`
+
+Generated clients for import:
+```
+catalogi
+documenten
+zaken
+```
+
+### How to start the repo
 
 `yarn install --frozen-lockfile`
 
-`npx projen`
+`npx projen build`
 
 ### Generate clients command line
 
