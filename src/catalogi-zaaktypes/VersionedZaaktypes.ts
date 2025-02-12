@@ -19,8 +19,6 @@ export class VersionedZaaktypes {
    */
   public async fetchAndGroupZaaktypes(): Promise<void> {
     const api = new catalogi.Zaaktypen(this.httpClient);
-
-    // ✅ Gebruik de pagination helper
     const allZaaktypes = await getAllPaginatedResults(api.zaaktypeList, {});
 
     this.zaaktypesByIdentificatie = allZaaktypes.reduce((acc, zaaktype) => {
