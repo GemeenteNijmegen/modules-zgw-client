@@ -17,12 +17,20 @@ const project = new GemeenteNijmegenTsPackage({
   devDeps: [
     '@gemeentenijmegen/projen-project-type',
     'dotenv', // Needed to use .env vars
-    'json-schema-to-ts', // Installeer deze afhankelijkheid voor JSON schema types ivm openapi-typescript
     '@types/jsonwebtoken',
     'axios-mock-adapter', // For testing
   ],
+  tsconfigDev: {
+    compilerOptions: {
+      declaration: true,
+      emitDeclarationOnly: false,
+      skipLibCheck: true, // Unused lib dependencies return issues when building otherwise
+    },
+  },
   tsconfig: {
     compilerOptions: {
+      declaration: true,
+      emitDeclarationOnly: false,
       skipLibCheck: true, // Unused lib dependencies return issues when building otherwise
     },
   },

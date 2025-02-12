@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'path';
-import { generateApi } from 'swagger-typescript-api';
+import { generateApi, GenerateApiParams } from 'swagger-typescript-api';
 
 
 export class ClientGenerator {
@@ -20,17 +20,23 @@ export class ClientGenerator {
     try {
       // Generate API client using swagger-typescript-api
       const apiOutputPath = path.resolve(versionPath, 'api');
-      await generateApi({
+      const generateApiParams: GenerateApiParams = {
         name: 'api.ts',
         output: apiOutputPath,
         input: openApiPath,
-        httpClientType: 'axios', // or "fetch"
+        httpClientType: 'axios', // fetch does not generate as expected
         modular: true,
         singleHttpClient: true,
         extractRequestParams: true,
         extractResponseBody: true,
+        generateRouteTypes: true,
         prettier: { tabWidth: 2 },
-      });
+      };
+      // Hier kan in de toekomst eventueel nog een paginated results helper worden toegevoegd met een onCreateRoute hook
+      // https://github.com/acacode/swagger-typescript-api/blob/d90a21d8287c7d428c7b8fa8d3761b6414afeb83/README.md?plain=1#L162
+      // Met de (routeData) kan misschien het responseschema bekeken worden op next, of results[]
+
+      await generateApi(generateApiParams);
 
       // Generate index.ts for the API folder
       const apiIndexPath = path.join(apiOutputPath, 'index.ts');

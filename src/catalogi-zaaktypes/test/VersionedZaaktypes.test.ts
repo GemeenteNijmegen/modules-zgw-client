@@ -30,7 +30,7 @@ describe('VersionedZaaktypes', () => {
         versiedatum: '2023-06-01',
         beginGeldigheid: '2023-06-01',
       },
-    ] as catalogi.ZaakType[];
+    ] as catalogi.ZaakType[] ;
   });
 
   beforeEach(() => {
@@ -48,7 +48,7 @@ describe('VersionedZaaktypes', () => {
   });
 
   test('fetchAndGroupZaaktypes should fetch and group zaaktypes by identificatie', async () => {
-    mockAxios.onGet('/zaaktypen').reply(200, mockZaaktypes);
+    mockAxios.onGet('/zaaktypen').reply(200, { results: mockZaaktypes });
 
     await versionedZaaktypes.fetchAndGroupZaaktypes();
 
@@ -59,7 +59,7 @@ describe('VersionedZaaktypes', () => {
   });
 
   test('getUniqueIdentificaties should return unique zaaktype identificaties', async () => {
-    mockAxios.onGet('/zaaktypen').reply(200, mockZaaktypes);
+    mockAxios.onGet('/zaaktypen').reply(200, { results: mockZaaktypes });
 
     await versionedZaaktypes.fetchAndGroupZaaktypes();
 
@@ -68,7 +68,7 @@ describe('VersionedZaaktypes', () => {
   });
 
   test('getVersionsByIdentificatie should return versions of a zaaktype by identificatie', async () => {
-    mockAxios.onGet('/zaaktypen').reply(200, mockZaaktypes);
+    mockAxios.onGet('/zaaktypen').reply(200, { results: mockZaaktypes });
 
     await versionedZaaktypes.fetchAndGroupZaaktypes();
 
@@ -88,7 +88,7 @@ describe('VersionedZaaktypes', () => {
   });
 
   test('getVersionsByIdentificatie should throw an error if identificatie does not exist', async () => {
-    mockAxios.onGet('/zaaktypen').reply(200, mockZaaktypes);
+    mockAxios.onGet('/zaaktypen').reply(200, { results: mockZaaktypes });
 
     await versionedZaaktypes.fetchAndGroupZaaktypes();
 
@@ -97,7 +97,7 @@ describe('VersionedZaaktypes', () => {
   });
 
   test('getGroupedZaaktypes should return grouped zaaktypes', async () => {
-    mockAxios.onGet('/zaaktypen').reply(200, mockZaaktypes);
+    mockAxios.onGet('/zaaktypen').reply(200, { results: mockZaaktypes });
 
     await versionedZaaktypes.fetchAndGroupZaaktypes();
 

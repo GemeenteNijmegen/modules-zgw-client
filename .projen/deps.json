@@ -72,10 +72,6 @@
       "type": "build"
     },
     {
-      "name": "json-schema-to-ts",
-      "type": "build"
-    },
-    {
       "name": "projen",
       "type": "build"
     },
