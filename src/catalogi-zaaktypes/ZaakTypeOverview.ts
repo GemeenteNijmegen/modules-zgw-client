@@ -50,7 +50,7 @@ export interface ZaakTypeOverview {
      */
   apiOmgeving?: string;
 
-    
+
   statusTypen:{ url: string; kenmerk?: string; omschrijving?: string; default?: boolean}[];
   resultaatTypen: { url: string; kenmerk?: string; omschrijving?: string; default?: boolean}[];
   eigenschappen: { url: string; kenmerk?: string; naam?: string; default?: boolean}[];

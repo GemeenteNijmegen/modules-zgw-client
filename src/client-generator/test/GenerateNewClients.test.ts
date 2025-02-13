@@ -87,8 +87,8 @@ describe('GenerateNewClients', () => {
     );
     expect(writeFileMock).toHaveBeenCalledTimes(2); // first download file, second write index
     expect(writeFileMock.mock.calls[1][0]).toContain('index.ts');
-    expect(writeFileMock.mock.calls[1][1]).toContain(`export * as v1_4_0 from './1.4.0';`);
-    expect(writeFileMock.mock.calls[1][1]).toContain(`export * as v1_3_0 from './1.3.0';`);
-    expect(writeFileMock.mock.calls[1][1]).toContain(`export * from './1.4.0';`);
+    expect(writeFileMock.mock.calls[1][1]).toContain('export * as v1_4_0 from \'./1.4.0\';');
+    expect(writeFileMock.mock.calls[1][1]).toContain('export * as v1_3_0 from \'./1.3.0\';');
+    expect(writeFileMock.mock.calls[1][1]).toContain('export * from \'./1.4.0\';');
   });
 });
