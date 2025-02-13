@@ -1,5 +1,5 @@
 import { createClientConfig, GenerateClientConfiguration } from '../GenerateClientConfiguration';
-import { GenerateNewClients } from '../GenerateNewClients';
+
 import { ScanGeneratedFolders } from '../ScanGeneratedFolders';
 import { VersionScanner } from '../VersionScanner';
 
@@ -16,21 +16,22 @@ jest.mock('../ClientGenerator', () => {
 /* eslint-disable import/order */
 import { ClientGenerator } from '../ClientGenerator';
 
+const writeFileMock: jest.SpyInstance = jest.fn().mockResolvedValue(undefined);
 jest.mock('fs/promises', () => ({
   mkdir: jest.fn(),
-  writeFile: jest.fn().mockResolvedValue(undefined),
+  writeFile: writeFileMock,
   readFile: jest.fn().mockResolvedValue('file content'),
   stat: jest.fn().mockResolvedValue({ size: 100 }),
   readdir: jest.fn().mockResolvedValue(['1.3.0', '1.4.0']),
 }));
 /* eslint-disable import/order */
 import * as fs from 'fs/promises'; // Import after mock
-
+/* eslint-disable import/order */
+import { GenerateNewClients } from '../GenerateNewClients';
 describe('GenerateNewClients', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-
     jest.spyOn(fs, 'mkdir').mockResolvedValue(undefined); // set here to prevent TS from saying unused import of fs
     jest.spyOn(global, 'fetch').mockResolvedValue({
       ok: true,
@@ -84,5 +85,10 @@ describe('GenerateNewClients', () => {
       expect.stringContaining('1.1.1'),
       expect.any(String),
     );
+    expect(writeFileMock).toHaveBeenCalledTimes(2); // first download file, second write index
+    expect(writeFileMock.mock.calls[1][0]).toContain('index.ts');
+    expect(writeFileMock.mock.calls[1][1]).toContain(`export * as v1_4_0 from './1.4.0';`);
+    expect(writeFileMock.mock.calls[1][1]).toContain(`export * as v1_3_0 from './1.3.0';`);
+    expect(writeFileMock.mock.calls[1][1]).toContain(`export * from './1.4.0';`);
   });
 });

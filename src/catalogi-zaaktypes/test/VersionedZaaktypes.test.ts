@@ -11,7 +11,6 @@ describe('VersionedZaaktypes', () => {
   let mockZaaktypes: catalogi.ZaakType[];
 
   beforeAll(() => {
-    // Sample data for testing
     mockZaaktypes = [
       {
         identificatie: 'ZAAK-001',
