@@ -1,5 +1,4 @@
 import { createClientConfig, GenerateClientConfiguration } from '../GenerateClientConfiguration';
-
 import { ScanGeneratedFolders } from '../ScanGeneratedFolders';
 import { VersionScanner } from '../VersionScanner';
 
