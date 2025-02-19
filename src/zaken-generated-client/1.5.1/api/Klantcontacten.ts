@@ -56,7 +56,7 @@ export class Klantcontacten<SecurityDataType = unknown> {
    * @deprecated
    * @secure
    */
-  klantcontactCreate = (data: KlantContact, params: RequestParams = {}) =>
+  klantcontactCreate = (data: Partial<KlantContact>, params: RequestParams = {}) =>
     this.http.request<KlantcontactCreateData, ValidatieFout | Fout>({
       path: `/klantcontacten`,
       method: "POST",

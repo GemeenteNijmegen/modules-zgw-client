@@ -59,7 +59,7 @@ export class Roltypen<SecurityDataType = unknown> {
    * @request POST:/roltypen
    * @secure
    */
-  roltypeCreate = (data: RolType, params: RequestParams = {}) =>
+  roltypeCreate = (data: Partial<RolType>, params: RequestParams = {}) =>
     this.http.request<RoltypeCreateData, ValidatieFout | Fout>({
       path: `/roltypen`,
       method: "POST",
@@ -95,7 +95,7 @@ export class Roltypen<SecurityDataType = unknown> {
    * @request PUT:/roltypen/{uuid}
    * @secure
    */
-  roltypeUpdate = (uuid: string, data: RolType, params: RequestParams = {}) =>
+  roltypeUpdate = (uuid: string, data: Partial<RolType>, params: RequestParams = {}) =>
     this.http.request<RoltypeUpdateData, ValidatieFout | Fout>({
       path: `/roltypen/${uuid}`,
       method: "PUT",
@@ -114,7 +114,7 @@ export class Roltypen<SecurityDataType = unknown> {
    * @request PATCH:/roltypen/{uuid}
    * @secure
    */
-  roltypePartialUpdate = (uuid: string, data: PatchedRolType, params: RequestParams = {}) =>
+  roltypePartialUpdate = (uuid: string, data: Partial<PatchedRolType>, params: RequestParams = {}) =>
     this.http.request<RoltypePartialUpdateData, ValidatieFout | Fout>({
       path: `/roltypen/${uuid}`,
       method: "PATCH",

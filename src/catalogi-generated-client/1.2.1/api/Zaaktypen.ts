@@ -60,7 +60,7 @@ export class Zaaktypen<SecurityDataType = unknown> {
    * @request POST:/zaaktypen
    * @secure
    */
-  zaaktypeCreate = (data: ZaakType, params: RequestParams = {}) =>
+  zaaktypeCreate = (data: Partial<ZaakType>, params: RequestParams = {}) =>
     this.http.request<ZaaktypeCreateData, ValidatieFout | Fout>({
       path: `/zaaktypen`,
       method: "POST",
@@ -96,7 +96,7 @@ export class Zaaktypen<SecurityDataType = unknown> {
    * @request PUT:/zaaktypen/{uuid}
    * @secure
    */
-  zaaktypeUpdate = (uuid: string, data: ZaakType, params: RequestParams = {}) =>
+  zaaktypeUpdate = (uuid: string, data: Partial<ZaakType>, params: RequestParams = {}) =>
     this.http.request<ZaaktypeUpdateData, ValidatieFout | Fout>({
       path: `/zaaktypen/${uuid}`,
       method: "PUT",
@@ -115,7 +115,7 @@ export class Zaaktypen<SecurityDataType = unknown> {
    * @request PATCH:/zaaktypen/{uuid}
    * @secure
    */
-  zaaktypePartialUpdate = (uuid: string, data: PatchedZaakType, params: RequestParams = {}) =>
+  zaaktypePartialUpdate = (uuid: string, data: Partial<PatchedZaakType>, params: RequestParams = {}) =>
     this.http.request<ZaaktypePartialUpdateData, ValidatieFout | Fout>({
       path: `/zaaktypen/${uuid}`,
       method: "PATCH",
@@ -164,7 +164,7 @@ export class Zaaktypen<SecurityDataType = unknown> {
    * @request POST:/zaaktypen/{uuid}/publish
    * @secure
    */
-  zaaktypePublish = (uuid: string, data: ZaakType, params: RequestParams = {}) =>
+  zaaktypePublish = (uuid: string, data: Partial<ZaakType>, params: RequestParams = {}) =>
     this.http.request<ZaaktypePublishData, any>({
       path: `/zaaktypen/${uuid}/publish`,
       method: "POST",

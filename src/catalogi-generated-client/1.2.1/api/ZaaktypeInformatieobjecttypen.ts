@@ -59,7 +59,7 @@ export class ZaaktypeInformatieobjecttypen<SecurityDataType = unknown> {
    * @request POST:/zaaktype-informatieobjecttypen
    * @secure
    */
-  zaakinformatieobjecttypeCreate = (data: ZaakTypeInformatieObjectType, params: RequestParams = {}) =>
+  zaakinformatieobjecttypeCreate = (data: Partial<ZaakTypeInformatieObjectType>, params: RequestParams = {}) =>
     this.http.request<ZaakinformatieobjecttypeCreateData, ValidatieFout | Fout>({
       path: `/zaaktype-informatieobjecttypen`,
       method: "POST",
@@ -95,7 +95,11 @@ export class ZaaktypeInformatieobjecttypen<SecurityDataType = unknown> {
    * @request PUT:/zaaktype-informatieobjecttypen/{uuid}
    * @secure
    */
-  zaakinformatieobjecttypeUpdate = (uuid: string, data: ZaakTypeInformatieObjectType, params: RequestParams = {}) =>
+  zaakinformatieobjecttypeUpdate = (
+    uuid: string,
+    data: Partial<ZaakTypeInformatieObjectType>,
+    params: RequestParams = {},
+  ) =>
     this.http.request<ZaakinformatieobjecttypeUpdateData, ValidatieFout | Fout>({
       path: `/zaaktype-informatieobjecttypen/${uuid}`,
       method: "PUT",
@@ -116,7 +120,7 @@ export class ZaaktypeInformatieobjecttypen<SecurityDataType = unknown> {
    */
   zaakinformatieobjecttypePartialUpdate = (
     uuid: string,
-    data: PatchedZaakTypeInformatieObjectType,
+    data: Partial<PatchedZaakTypeInformatieObjectType>,
     params: RequestParams = {},
   ) =>
     this.http.request<ZaakinformatieobjecttypePartialUpdateData, ValidatieFout | Fout>({

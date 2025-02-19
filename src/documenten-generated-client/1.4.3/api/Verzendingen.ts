@@ -57,7 +57,7 @@ export class Verzendingen<SecurityDataType = unknown> {
    * @summary Maak een VERZENDING aan.
    * @request POST:/verzendingen
    */
-  verzendingCreate = (data: VerzendingRequest, params: RequestParams = {}) =>
+  verzendingCreate = (data: Partial<VerzendingRequest>, params: RequestParams = {}) =>
     this.http.request<VerzendingCreateData, ValidatieFout | Fout>({
       path: `/verzendingen`,
       method: "POST",
@@ -90,7 +90,7 @@ export class Verzendingen<SecurityDataType = unknown> {
    * @summary Werk een VERZENDING in zijn geheel bij.
    * @request PUT:/verzendingen/{uuid}
    */
-  verzendingUpdate = (uuid: string, data: VerzendingRequest, params: RequestParams = {}) =>
+  verzendingUpdate = (uuid: string, data: Partial<VerzendingRequest>, params: RequestParams = {}) =>
     this.http.request<VerzendingUpdateData, ValidatieFout | Fout>({
       path: `/verzendingen/${uuid}`,
       method: "PUT",
@@ -107,7 +107,7 @@ export class Verzendingen<SecurityDataType = unknown> {
    * @summary Werk een VERZENDING relatie deels bij.
    * @request PATCH:/verzendingen/{uuid}
    */
-  verzendingPartialUpdate = (uuid: string, data: PatchedVerzendingRequest, params: RequestParams = {}) =>
+  verzendingPartialUpdate = (uuid: string, data: Partial<PatchedVerzendingRequest>, params: RequestParams = {}) =>
     this.http.request<VerzendingPartialUpdateData, ValidatieFout | Fout>({
       path: `/verzendingen/${uuid}`,
       method: "PATCH",

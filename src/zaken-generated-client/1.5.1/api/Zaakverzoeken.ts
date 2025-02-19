@@ -55,7 +55,7 @@ export class Zaakverzoeken<SecurityDataType = unknown> {
    * @request POST:/zaakverzoeken
    * @secure
    */
-  zaakverzoekCreate = (data: ZaakVerzoek, params: RequestParams = {}) =>
+  zaakverzoekCreate = (data: Partial<ZaakVerzoek>, params: RequestParams = {}) =>
     this.http.request<ZaakverzoekCreateData, ValidatieFout | Fout>({
       path: `/zaakverzoeken`,
       method: "POST",

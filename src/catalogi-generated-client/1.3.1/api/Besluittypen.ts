@@ -60,7 +60,7 @@ export class Besluittypen<SecurityDataType = unknown> {
    * @request POST:/besluittypen
    * @secure
    */
-  besluittypeCreate = (data: BesluitTypeCreate, params: RequestParams = {}) =>
+  besluittypeCreate = (data: Partial<BesluitTypeCreate>, params: RequestParams = {}) =>
     this.http.request<BesluittypeCreateData, ValidatieFout | Fout>({
       path: `/besluittypen`,
       method: "POST",
@@ -96,7 +96,7 @@ export class Besluittypen<SecurityDataType = unknown> {
    * @request PUT:/besluittypen/{uuid}
    * @secure
    */
-  besluittypeUpdate = (uuid: string, data: BesluitTypeUpdate, params: RequestParams = {}) =>
+  besluittypeUpdate = (uuid: string, data: Partial<BesluitTypeUpdate>, params: RequestParams = {}) =>
     this.http.request<BesluittypeUpdateData, ValidatieFout | Fout>({
       path: `/besluittypen/${uuid}`,
       method: "PUT",
@@ -115,7 +115,7 @@ export class Besluittypen<SecurityDataType = unknown> {
    * @request PATCH:/besluittypen/{uuid}
    * @secure
    */
-  besluittypePartialUpdate = (uuid: string, data: Record<string, any>, params: RequestParams = {}) =>
+  besluittypePartialUpdate = (uuid: string, data: Partial<Record<string, any>>, params: RequestParams = {}) =>
     this.http.request<BesluittypePartialUpdateData, ValidatieFout | Fout>({
       path: `/besluittypen/${uuid}`,
       method: "PATCH",

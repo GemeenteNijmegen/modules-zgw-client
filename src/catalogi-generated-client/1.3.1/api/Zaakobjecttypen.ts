@@ -59,7 +59,7 @@ export class Zaakobjecttypen<SecurityDataType = unknown> {
    * @request POST:/zaakobjecttypen
    * @secure
    */
-  zaakobjecttypeCreate = (data: ZaakObjectType, params: RequestParams = {}) =>
+  zaakobjecttypeCreate = (data: Partial<ZaakObjectType>, params: RequestParams = {}) =>
     this.http.request<ZaakobjecttypeCreateData, ValidatieFout | Fout>({
       path: `/zaakobjecttypen`,
       method: "POST",
@@ -95,7 +95,7 @@ export class Zaakobjecttypen<SecurityDataType = unknown> {
    * @request PUT:/zaakobjecttypen/{uuid}
    * @secure
    */
-  zaakobjecttypeUpdate = (uuid: string, data: ZaakObjectType, params: RequestParams = {}) =>
+  zaakobjecttypeUpdate = (uuid: string, data: Partial<ZaakObjectType>, params: RequestParams = {}) =>
     this.http.request<ZaakobjecttypeUpdateData, ValidatieFout | Fout>({
       path: `/zaakobjecttypen/${uuid}`,
       method: "PUT",
@@ -114,7 +114,7 @@ export class Zaakobjecttypen<SecurityDataType = unknown> {
    * @request PATCH:/zaakobjecttypen/{uuid}
    * @secure
    */
-  zaakobjecttypePartialUpdate = (uuid: string, data: PatchedZaakObjectType, params: RequestParams = {}) =>
+  zaakobjecttypePartialUpdate = (uuid: string, data: Partial<PatchedZaakObjectType>, params: RequestParams = {}) =>
     this.http.request<ZaakobjecttypePartialUpdateData, ValidatieFout | Fout>({
       path: `/zaakobjecttypen/${uuid}`,
       method: "PATCH",

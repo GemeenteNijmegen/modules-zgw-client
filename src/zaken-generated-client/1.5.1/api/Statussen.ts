@@ -55,7 +55,7 @@ export class Statussen<SecurityDataType = unknown> {
    * @request POST:/statussen
    * @secure
    */
-  statusCreate = (data: Status, params: RequestParams = {}) =>
+  statusCreate = (data: Partial<Status>, params: RequestParams = {}) =>
     this.http.request<StatusCreateData, ValidatieFout | Fout>({
       path: `/statussen`,
       method: "POST",

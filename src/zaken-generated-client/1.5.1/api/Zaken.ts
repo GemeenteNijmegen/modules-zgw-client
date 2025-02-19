@@ -79,7 +79,7 @@ export class Zaken<SecurityDataType = unknown> {
    * @request POST:/zaken
    * @secure
    */
-  zaakCreate = (data: Zaak, params: RequestParams = {}) =>
+  zaakCreate = (data: Partial<Zaak>, params: RequestParams = {}) =>
     this.http.request<ZaakCreateData, ValidatieFout | Fout>({
       path: `/zaken`,
       method: "POST",
@@ -116,7 +116,7 @@ export class Zaken<SecurityDataType = unknown> {
    * @request PUT:/zaken/{uuid}
    * @secure
    */
-  zaakUpdate = (uuid: string, data: Zaak, params: RequestParams = {}) =>
+  zaakUpdate = (uuid: string, data: Partial<Zaak>, params: RequestParams = {}) =>
     this.http.request<ZaakUpdateData, ValidatieFout | Fout>({
       path: `/zaken/${uuid}`,
       method: "PUT",
@@ -135,7 +135,7 @@ export class Zaken<SecurityDataType = unknown> {
    * @request PATCH:/zaken/{uuid}
    * @secure
    */
-  zaakPartialUpdate = (uuid: string, data: PatchedZaak, params: RequestParams = {}) =>
+  zaakPartialUpdate = (uuid: string, data: Partial<PatchedZaak>, params: RequestParams = {}) =>
     this.http.request<ZaakPartialUpdateData, ValidatieFout | Fout>({
       path: `/zaken/${uuid}`,
       method: "PATCH",
@@ -235,7 +235,7 @@ export class Zaken<SecurityDataType = unknown> {
    * @request POST:/zaken/{zaak_uuid}/besluiten
    * @secure
    */
-  zaakbesluitCreate = (zaakUuid: string, data: ZaakBesluit, params: RequestParams = {}) =>
+  zaakbesluitCreate = (zaakUuid: string, data: Partial<ZaakBesluit>, params: RequestParams = {}) =>
     this.http.request<ZaakbesluitCreateData, ValidatieFout | Fout>({
       path: `/zaken/${zaakUuid}/besluiten`,
       method: "POST",
@@ -304,7 +304,7 @@ export class Zaken<SecurityDataType = unknown> {
    * @request POST:/zaken/{zaak_uuid}/zaakeigenschappen
    * @secure
    */
-  zaakeigenschapCreate = (zaakUuid: string, data: ZaakEigenschap, params: RequestParams = {}) =>
+  zaakeigenschapCreate = (zaakUuid: string, data: Partial<ZaakEigenschap>, params: RequestParams = {}) =>
     this.http.request<ZaakeigenschapCreateData, ValidatieFout | Fout>({
       path: `/zaken/${zaakUuid}/zaakeigenschappen`,
       method: "POST",
@@ -340,7 +340,7 @@ export class Zaken<SecurityDataType = unknown> {
    * @request PUT:/zaken/{zaak_uuid}/zaakeigenschappen/{uuid}
    * @secure
    */
-  zaakeigenschapUpdate = (uuid: string, zaakUuid: string, data: ZaakEigenschap, params: RequestParams = {}) =>
+  zaakeigenschapUpdate = (uuid: string, zaakUuid: string, data: Partial<ZaakEigenschap>, params: RequestParams = {}) =>
     this.http.request<ZaakeigenschapUpdateData, ValidatieFout | Fout>({
       path: `/zaken/${zaakUuid}/zaakeigenschappen/${uuid}`,
       method: "PUT",
@@ -362,7 +362,7 @@ export class Zaken<SecurityDataType = unknown> {
   zaakeigenschapPartialUpdate = (
     uuid: string,
     zaakUuid: string,
-    data: PatchedZaakEigenschap,
+    data: Partial<PatchedZaakEigenschap>,
     params: RequestParams = {},
   ) =>
     this.http.request<ZaakeigenschapPartialUpdateData, ValidatieFout | Fout>({
@@ -413,7 +413,7 @@ export class Zaken<SecurityDataType = unknown> {
    * @request POST:/zaken/_zoek
    * @secure
    */
-  zaakZoek = (query: ZaakZoekParams, data: ZaakZoek, params: RequestParams = {}) =>
+  zaakZoek = (query: ZaakZoekParams, data: Partial<ZaakZoek>, params: RequestParams = {}) =>
     this.http.request<ZaakZoekData, ValidatieFout | Fout>({
       path: `/zaken/_zoek`,
       method: "POST",

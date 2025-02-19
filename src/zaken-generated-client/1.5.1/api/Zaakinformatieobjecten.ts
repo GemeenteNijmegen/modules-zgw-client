@@ -59,7 +59,7 @@ export class Zaakinformatieobjecten<SecurityDataType = unknown> {
    * @request POST:/zaakinformatieobjecten
    * @secure
    */
-  zaakinformatieobjectCreate = (data: ZaakInformatieObject, params: RequestParams = {}) =>
+  zaakinformatieobjectCreate = (data: Partial<ZaakInformatieObject>, params: RequestParams = {}) =>
     this.http.request<ZaakinformatieobjectCreateData, ValidatieFout | Fout>({
       path: `/zaakinformatieobjecten`,
       method: "POST",
@@ -95,7 +95,7 @@ export class Zaakinformatieobjecten<SecurityDataType = unknown> {
    * @request PUT:/zaakinformatieobjecten/{uuid}
    * @secure
    */
-  zaakinformatieobjectUpdate = (uuid: string, data: ZaakInformatieObject, params: RequestParams = {}) =>
+  zaakinformatieobjectUpdate = (uuid: string, data: Partial<ZaakInformatieObject>, params: RequestParams = {}) =>
     this.http.request<ZaakinformatieobjectUpdateData, ValidatieFout | Fout>({
       path: `/zaakinformatieobjecten/${uuid}`,
       method: "PUT",
@@ -114,7 +114,11 @@ export class Zaakinformatieobjecten<SecurityDataType = unknown> {
    * @request PATCH:/zaakinformatieobjecten/{uuid}
    * @secure
    */
-  zaakinformatieobjectPartialUpdate = (uuid: string, data: PatchedZaakInformatieObject, params: RequestParams = {}) =>
+  zaakinformatieobjectPartialUpdate = (
+    uuid: string,
+    data: Partial<PatchedZaakInformatieObject>,
+    params: RequestParams = {},
+  ) =>
     this.http.request<ZaakinformatieobjectPartialUpdateData, ValidatieFout | Fout>({
       path: `/zaakinformatieobjecten/${uuid}`,
       method: "PATCH",

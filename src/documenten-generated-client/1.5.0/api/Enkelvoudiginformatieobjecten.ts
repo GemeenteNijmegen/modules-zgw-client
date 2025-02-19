@@ -72,7 +72,7 @@ export class Enkelvoudiginformatieobjecten<SecurityDataType = unknown> {
    * @secure
    */
   enkelvoudiginformatieobjectCreate = (
-    data: EnkelvoudigInformatieObjectCreateLockRequest,
+    data: Partial<EnkelvoudigInformatieObjectCreateLockRequest>,
     params: RequestParams = {},
   ) =>
     this.http.request<EnkelvoudiginformatieobjectCreateData, ValidatieFout | Fout>({
@@ -150,7 +150,7 @@ export class Enkelvoudiginformatieobjecten<SecurityDataType = unknown> {
    */
   enkelvoudiginformatieobjectUpdate = (
     uuid: string,
-    data: EnkelvoudigInformatieObjectWithLockRequest,
+    data: Partial<EnkelvoudigInformatieObjectWithLockRequest>,
     params: RequestParams = {},
   ) =>
     this.http.request<EnkelvoudiginformatieobjectUpdateData, ValidatieFout | Fout>({
@@ -173,7 +173,7 @@ export class Enkelvoudiginformatieobjecten<SecurityDataType = unknown> {
    */
   enkelvoudiginformatieobjectPartialUpdate = (
     uuid: string,
-    data: PatchedEnkelvoudigInformatieObjectWithLockRequest,
+    data: Partial<PatchedEnkelvoudigInformatieObjectWithLockRequest>,
     params: RequestParams = {},
   ) =>
     this.http.request<EnkelvoudiginformatieobjectPartialUpdateData, ValidatieFout | Fout>({
@@ -263,7 +263,7 @@ export class Enkelvoudiginformatieobjecten<SecurityDataType = unknown> {
    */
   enkelvoudiginformatieobjectUnlock = (
     uuid: string,
-    data: UnlockEnkelvoudigInformatieObjectRequest,
+    data: Partial<UnlockEnkelvoudigInformatieObjectRequest>,
     params: RequestParams = {},
   ) =>
     this.http.request<EnkelvoudiginformatieobjectUnlockData, Fout>({
@@ -285,7 +285,7 @@ export class Enkelvoudiginformatieobjecten<SecurityDataType = unknown> {
    */
   enkelvoudiginformatieobjectZoek = (
     query: EnkelvoudiginformatieobjectZoekParams,
-    data: EIOZoekRequest,
+    data: Partial<EIOZoekRequest>,
     params: RequestParams = {},
   ) =>
     this.http.request<EnkelvoudiginformatieobjectZoekData, ValidatieFout | Fout>({

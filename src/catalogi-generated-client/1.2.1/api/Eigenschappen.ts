@@ -59,7 +59,7 @@ export class Eigenschappen<SecurityDataType = unknown> {
    * @request POST:/eigenschappen
    * @secure
    */
-  eigenschapCreate = (data: Eigenschap, params: RequestParams = {}) =>
+  eigenschapCreate = (data: Partial<Eigenschap>, params: RequestParams = {}) =>
     this.http.request<EigenschapCreateData, ValidatieFout | Fout>({
       path: `/eigenschappen`,
       method: "POST",
@@ -95,7 +95,7 @@ export class Eigenschappen<SecurityDataType = unknown> {
    * @request PUT:/eigenschappen/{uuid}
    * @secure
    */
-  eigenschapUpdate = (uuid: string, data: Eigenschap, params: RequestParams = {}) =>
+  eigenschapUpdate = (uuid: string, data: Partial<Eigenschap>, params: RequestParams = {}) =>
     this.http.request<EigenschapUpdateData, ValidatieFout | Fout>({
       path: `/eigenschappen/${uuid}`,
       method: "PUT",
@@ -114,7 +114,7 @@ export class Eigenschappen<SecurityDataType = unknown> {
    * @request PATCH:/eigenschappen/{uuid}
    * @secure
    */
-  eigenschapPartialUpdate = (uuid: string, data: PatchedEigenschap, params: RequestParams = {}) =>
+  eigenschapPartialUpdate = (uuid: string, data: Partial<PatchedEigenschap>, params: RequestParams = {}) =>
     this.http.request<EigenschapPartialUpdateData, ValidatieFout | Fout>({
       path: `/eigenschappen/${uuid}`,
       method: "PATCH",
