@@ -55,7 +55,7 @@ export class Catalogussen<SecurityDataType = unknown> {
    * @request POST:/catalogussen
    * @secure
    */
-  catalogusCreate = (data: Catalogus, params: RequestParams = {}) =>
+  catalogusCreate = (data: Partial<Catalogus>, params: RequestParams = {}) =>
     this.http.request<CatalogusCreateData, ValidatieFout | Fout>({
       path: `/catalogussen`,
       method: "POST",

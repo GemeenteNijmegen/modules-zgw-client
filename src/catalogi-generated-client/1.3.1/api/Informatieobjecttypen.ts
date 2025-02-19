@@ -59,7 +59,7 @@ export class Informatieobjecttypen<SecurityDataType = unknown> {
    * @request POST:/informatieobjecttypen
    * @secure
    */
-  informatieobjecttypeCreate = (data: InformatieObjectType, params: RequestParams = {}) =>
+  informatieobjecttypeCreate = (data: Partial<InformatieObjectType>, params: RequestParams = {}) =>
     this.http.request<InformatieobjecttypeCreateData, ValidatieFout | Fout>({
       path: `/informatieobjecttypen`,
       method: "POST",
@@ -95,7 +95,7 @@ export class Informatieobjecttypen<SecurityDataType = unknown> {
    * @request PUT:/informatieobjecttypen/{uuid}
    * @secure
    */
-  informatieobjecttypeUpdate = (uuid: string, data: Record<string, any>, params: RequestParams = {}) =>
+  informatieobjecttypeUpdate = (uuid: string, data: Partial<Record<string, any>>, params: RequestParams = {}) =>
     this.http.request<InformatieobjecttypeUpdateData, ValidatieFout | Fout>({
       path: `/informatieobjecttypen/${uuid}`,
       method: "PUT",
@@ -114,7 +114,7 @@ export class Informatieobjecttypen<SecurityDataType = unknown> {
    * @request PATCH:/informatieobjecttypen/{uuid}
    * @secure
    */
-  informatieobjecttypePartialUpdate = (uuid: string, data: Record<string, any>, params: RequestParams = {}) =>
+  informatieobjecttypePartialUpdate = (uuid: string, data: Partial<Record<string, any>>, params: RequestParams = {}) =>
     this.http.request<InformatieobjecttypePartialUpdateData, ValidatieFout | Fout>({
       path: `/informatieobjecttypen/${uuid}`,
       method: "PATCH",

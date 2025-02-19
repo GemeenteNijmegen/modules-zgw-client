@@ -55,7 +55,7 @@ export class Zaakcontactmomenten<SecurityDataType = unknown> {
    * @request POST:/zaakcontactmomenten
    * @secure
    */
-  zaakcontactmomentCreate = (data: ZaakContactMoment, params: RequestParams = {}) =>
+  zaakcontactmomentCreate = (data: Partial<ZaakContactMoment>, params: RequestParams = {}) =>
     this.http.request<ZaakcontactmomentCreateData, ValidatieFout | Fout>({
       path: `/zaakcontactmomenten`,
       method: "POST",

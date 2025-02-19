@@ -59,7 +59,7 @@ export class Resultaten<SecurityDataType = unknown> {
    * @request POST:/resultaten
    * @secure
    */
-  resultaatCreate = (data: Resultaat, params: RequestParams = {}) =>
+  resultaatCreate = (data: Partial<Resultaat>, params: RequestParams = {}) =>
     this.http.request<ResultaatCreateData, ValidatieFout | Fout>({
       path: `/resultaten`,
       method: "POST",
@@ -95,7 +95,7 @@ export class Resultaten<SecurityDataType = unknown> {
    * @request PUT:/resultaten/{uuid}
    * @secure
    */
-  resultaatUpdate = (uuid: string, data: Resultaat, params: RequestParams = {}) =>
+  resultaatUpdate = (uuid: string, data: Partial<Resultaat>, params: RequestParams = {}) =>
     this.http.request<ResultaatUpdateData, ValidatieFout | Fout>({
       path: `/resultaten/${uuid}`,
       method: "PUT",
@@ -114,7 +114,7 @@ export class Resultaten<SecurityDataType = unknown> {
    * @request PATCH:/resultaten/{uuid}
    * @secure
    */
-  resultaatPartialUpdate = (uuid: string, data: PatchedResultaat, params: RequestParams = {}) =>
+  resultaatPartialUpdate = (uuid: string, data: Partial<PatchedResultaat>, params: RequestParams = {}) =>
     this.http.request<ResultaatPartialUpdateData, ValidatieFout | Fout>({
       path: `/resultaten/${uuid}`,
       method: "PATCH",

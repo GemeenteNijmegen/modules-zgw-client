@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'path';
-import { generateApi, GenerateApiParams } from 'swagger-typescript-api';
+import { generateApi, GenerateApiParams, Hooks } from 'swagger-typescript-api';
+import { partialInputHook } from './partialInputHook';
 
 
 export class ClientGenerator {
@@ -29,8 +30,13 @@ export class ClientGenerator {
         singleHttpClient: true,
         extractRequestParams: true,
         extractResponseBody: true,
-        generateRouteTypes: true,
         prettier: { tabWidth: 2 },
+        hooks: {
+          // Maak hier een hook die ervoor zorgt dat er partials komen bij alle POST, PUT en PATCH.
+          // Dit hoeft niet onCreateComponent te zijn en de hook mag ook anders heten.
+          // Kijk https://github.com/acacode/swagger-typescript-api/ in deze openbare github repo voor de hook opties
+          onCreateRoute: partialInputHook.onCreateRoute,
+        } as Partial<Hooks>,
       };
       // Hier kan in de toekomst eventueel nog een paginated results helper worden toegevoegd met een onCreateRoute hook
       // https://github.com/acacode/swagger-typescript-api/blob/d90a21d8287c7d428c7b8fa8d3761b6414afeb83/README.md?plain=1#L162

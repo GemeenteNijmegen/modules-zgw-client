@@ -56,7 +56,7 @@ export class Rollen<SecurityDataType = unknown> {
    * @request POST:/rollen
    * @secure
    */
-  rolCreate = (data: Rol, params: RequestParams = {}) =>
+  rolCreate = (data: Partial<Rol>, params: RequestParams = {}) =>
     this.http.request<RolCreateData, ValidatieFout | Fout>({
       path: `/rollen`,
       method: "POST",

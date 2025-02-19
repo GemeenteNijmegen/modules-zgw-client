@@ -56,7 +56,7 @@ export class Objectinformatieobjecten<SecurityDataType = unknown> {
    * @request POST:/objectinformatieobjecten
    * @secure
    */
-  objectinformatieobjectCreate = (data: ObjectInformatieObjectRequest, params: RequestParams = {}) =>
+  objectinformatieobjectCreate = (data: Partial<ObjectInformatieObjectRequest>, params: RequestParams = {}) =>
     this.http.request<ObjectinformatieobjectCreateData, ValidatieFout | Fout>({
       path: `/objectinformatieobjecten`,
       method: "POST",

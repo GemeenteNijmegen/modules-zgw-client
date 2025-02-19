@@ -28,7 +28,7 @@ export class Bestandsdelen<SecurityDataType = unknown> {
    * @request PUT:/bestandsdelen/{uuid}
    * @secure
    */
-  bestandsdeelUpdate = (uuid: string, data: BestandsDeelRequest, params: RequestParams = {}) =>
+  bestandsdeelUpdate = (uuid: string, data: Partial<BestandsDeelRequest>, params: RequestParams = {}) =>
     this.http.request<BestandsdeelUpdateData, ValidatieFout | Fout>({
       path: `/bestandsdelen/${uuid}`,
       method: "PUT",

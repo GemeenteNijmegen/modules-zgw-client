@@ -59,7 +59,7 @@ export class Statustypen<SecurityDataType = unknown> {
    * @request POST:/statustypen
    * @secure
    */
-  statustypeCreate = (data: StatusType, params: RequestParams = {}) =>
+  statustypeCreate = (data: Partial<StatusType>, params: RequestParams = {}) =>
     this.http.request<StatustypeCreateData, ValidatieFout | Fout>({
       path: `/statustypen`,
       method: "POST",
@@ -95,7 +95,7 @@ export class Statustypen<SecurityDataType = unknown> {
    * @request PUT:/statustypen/{uuid}
    * @secure
    */
-  statustypeUpdate = (uuid: string, data: StatusType, params: RequestParams = {}) =>
+  statustypeUpdate = (uuid: string, data: Partial<StatusType>, params: RequestParams = {}) =>
     this.http.request<StatustypeUpdateData, ValidatieFout | Fout>({
       path: `/statustypen/${uuid}`,
       method: "PUT",
@@ -114,7 +114,7 @@ export class Statustypen<SecurityDataType = unknown> {
    * @request PATCH:/statustypen/{uuid}
    * @secure
    */
-  statustypePartialUpdate = (uuid: string, data: PatchedStatusType, params: RequestParams = {}) =>
+  statustypePartialUpdate = (uuid: string, data: Partial<PatchedStatusType>, params: RequestParams = {}) =>
     this.http.request<StatustypePartialUpdateData, ValidatieFout | Fout>({
       path: `/statustypen/${uuid}`,
       method: "PATCH",

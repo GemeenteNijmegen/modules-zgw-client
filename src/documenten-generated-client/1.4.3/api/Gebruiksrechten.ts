@@ -60,7 +60,7 @@ export class Gebruiksrechten<SecurityDataType = unknown> {
    * @request POST:/gebruiksrechten
    * @secure
    */
-  gebruiksrechtenCreate = (data: GebruiksrechtenRequest, params: RequestParams = {}) =>
+  gebruiksrechtenCreate = (data: Partial<GebruiksrechtenRequest>, params: RequestParams = {}) =>
     this.http.request<GebruiksrechtenCreateData, ValidatieFout | Fout>({
       path: `/gebruiksrechten`,
       method: "POST",
@@ -97,7 +97,7 @@ export class Gebruiksrechten<SecurityDataType = unknown> {
    * @request PUT:/gebruiksrechten/{uuid}
    * @secure
    */
-  gebruiksrechtenUpdate = (uuid: string, data: GebruiksrechtenRequest, params: RequestParams = {}) =>
+  gebruiksrechtenUpdate = (uuid: string, data: Partial<GebruiksrechtenRequest>, params: RequestParams = {}) =>
     this.http.request<GebruiksrechtenUpdateData, ValidatieFout | Fout>({
       path: `/gebruiksrechten/${uuid}`,
       method: "PUT",
@@ -116,7 +116,11 @@ export class Gebruiksrechten<SecurityDataType = unknown> {
    * @request PATCH:/gebruiksrechten/{uuid}
    * @secure
    */
-  gebruiksrechtenPartialUpdate = (uuid: string, data: PatchedGebruiksrechtenRequest, params: RequestParams = {}) =>
+  gebruiksrechtenPartialUpdate = (
+    uuid: string,
+    data: Partial<PatchedGebruiksrechtenRequest>,
+    params: RequestParams = {},
+  ) =>
     this.http.request<GebruiksrechtenPartialUpdateData, ValidatieFout | Fout>({
       path: `/gebruiksrechten/${uuid}`,
       method: "PATCH",
