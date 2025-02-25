@@ -5,15 +5,23 @@ import { getAllPaginatedResults } from '../pagination-helper';
 
 /**
  * Provides methods to retrieve and manage Zaaktypes grouped by their identificatie.
+ * Class has to be instantiated with create() or fetchAndGroupZaaktypes()
+ * It will retrieve all zaaktypes and caches them in the instance to prevent many api calls
  */
-export class VersionedZaaktypes {
+export class CachedVersionedZaaktypes {
   private httpClient: CatalogiHttpClient;
   private zaaktypesByIdentificatie: Record<string, catalogi.ZaakType[]> = {};
 
   constructor(httpClient: CatalogiHttpClient) {
     this.httpClient = httpClient;
-  }
 
+  }
+  /**
+   * Made create method for readability
+   */
+  public async create(): Promise<void> {
+    await this.fetchAndGroupZaaktypes();
+  }
   /**
    * Fetches all zaaktypes from the API using pagination and groups them by their identificatie.
    */
@@ -30,7 +38,21 @@ export class VersionedZaaktypes {
       return acc;
     }, {} as Record<string, catalogi.ZaakType[]>);
   }
-
+  /**
+   * Retrieves the latest version of a Zaaktype based on its identificatie.
+   */
+  public getLatestZaaktype(identificatie: string): catalogi.ZaakType {
+    const zaaktypes = this.zaaktypesByIdentificatie[identificatie];
+    if (!zaaktypes || zaaktypes.length === 0) {
+      throw new Error(`Geen zaaktypes gevonden voor identificatie: ${identificatie}.`);
+    }
+    // Sorteer de zaaktypes op versiedatum in aflopende volgorde
+    // Dit heeft de aanname dat de laatste versiedatum de nieuwste is
+    const sorted = zaaktypes.sort(
+      (a, b) => new Date(b.versiedatum).getTime() - new Date(a.versiedatum).getTime(),
+    );
+    return sorted[0];
+  }
   /**
    * Retrieves all unique identificaties of the zaaktypes.
    */

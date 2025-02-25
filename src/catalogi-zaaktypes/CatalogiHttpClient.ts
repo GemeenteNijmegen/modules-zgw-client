@@ -1,10 +1,10 @@
 import * as jwt from 'jsonwebtoken';
 import { HttpClient, FullRequestParams } from '../catalogi-generated-client';
 
-interface SecurityDataType {
+export interface SecurityDataType {
   token: string;
 }
-interface CatalogiHttpClientConfig {
+export interface CatalogiHttpClientConfig {
   clientId: string;
   clientSecret: string;
   baseUrl?: string;

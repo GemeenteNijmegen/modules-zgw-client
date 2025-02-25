@@ -1,13 +1,13 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import * as catalogi from '../../catalogi-generated-client';
+import { CachedVersionedZaaktypes } from '../CachedVersionedZaaktypes';
 import { CatalogiHttpClient } from '../CatalogiHttpClient';
-import { VersionedZaaktypes } from '../VersionedZaaktypes';
 
 describe('VersionedZaaktypes', () => {
   let mockHttpClient: CatalogiHttpClient;
   let mockAxios: MockAdapter;
-  let versionedZaaktypes: VersionedZaaktypes;
+  let versionedZaaktypes: CachedVersionedZaaktypes;
   let mockZaaktypes: catalogi.ZaakType[];
 
   beforeAll(() => {
@@ -39,7 +39,7 @@ describe('VersionedZaaktypes', () => {
       clientSecret: 'test-client-secret',
       baseUrl: 'https://mock-api.com',
     });
-    versionedZaaktypes = new VersionedZaaktypes(mockHttpClient);
+    versionedZaaktypes = new CachedVersionedZaaktypes(mockHttpClient);
   });
 
   afterEach(() => {
@@ -92,7 +92,7 @@ describe('VersionedZaaktypes', () => {
     await versionedZaaktypes.fetchAndGroupZaaktypes();
 
     expect(() => versionedZaaktypes.getVersionsByIdentificatie('ZAAK-999'))
-      .toThrowError('Identificatie not found: ZAAK-999');
+      .toThrow('Identificatie not found: ZAAK-999');
   });
 
   test('getGroupedZaaktypes should return grouped zaaktypes', async () => {

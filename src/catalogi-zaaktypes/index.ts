@@ -1,2 +1,5 @@
 export * from './CatalogiHttpClient';
-export * from './VersionedZaaktypes';
+export * from './CachedVersionedZaaktypes';
+export * from './VersionedZaaktype';
+export * from './ZaaktypeInformatieobjecttypeFetcher';
+export * from './ZaaktypeObjectsFetcher';
