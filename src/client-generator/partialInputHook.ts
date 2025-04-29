@@ -1,7 +1,5 @@
-import type { ParsedRoute, Hooks } from 'swagger-typescript-api';
-
-export const partialInputHook: Partial<Hooks> = {
-  onCreateRoute: (routeData: ParsedRoute): ParsedRoute => {
+export const partialInputHook = {
+  onCreateRoute: (routeData: any) => {
     // Get the method from either routeData.raw.method or routeData.request.method
     const method =
       routeData.raw?.method?.toLowerCase() ||
@@ -12,6 +10,7 @@ export const partialInputHook: Partial<Hooks> = {
       console.warn(
         `[partialInputHook] No HTTP method found for route "${routeData.routeName?.usage}".`,
       );
+      return routeData;
     }
 
     if (['post', 'put', 'patch'].includes(method)) {
