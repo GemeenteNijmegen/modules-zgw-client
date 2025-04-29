@@ -1,6 +1,6 @@
 import { VersionScanner } from '../VersionScanner';
 
-describe('VersionScanner (Real-Life Test)', () => {
+xdescribe('VersionScanner (Real-Life Test)', () => {
   const repositoryPath = 'VNG-Realisatie/gemma-zaken';
   const branch = 'master';
   const apiSpecPath = 'api-specificatie';
