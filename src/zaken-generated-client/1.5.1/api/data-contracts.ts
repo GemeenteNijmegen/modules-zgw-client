@@ -1639,14 +1639,117 @@ export interface ResultaatEmbedded {
   resultaattype?: any;
 }
 
-export type Rol = BaseRol &
-  (
-    | BaseRolBetrokkeneTypeMapping<"medewerker", MedewerkerRol>
-    | BaseRolBetrokkeneTypeMapping<"natuurlijk_persoon", NatuurlijkPersoonRol>
-    | BaseRolBetrokkeneTypeMapping<"niet_natuurlijk_persoon", NietNatuurlijkPersoonRol>
-    | BaseRolBetrokkeneTypeMapping<"organisatorische_eenheid", OrganisatorischeEenheidRol>
-    | BaseRolBetrokkeneTypeMapping<"vestiging", VestigingRol>
-  );
+export interface Rol {
+  /**
+   * url
+   * URL-referentie naar dit object. Dit is de unieke identificatie en locatie van dit object.
+   * @format uri
+   * @minLength 1
+   * @maxLength 1000
+   */
+  url: string;
+  /**
+   * uuid
+   * Unieke resource identifier (UUID4)
+   * @format uuid
+   */
+  uuid: string;
+  /**
+   * zaak
+   * URL-referentie naar de ZAAK.
+   * @format uri
+   * @minLength 1
+   * @maxLength 1000
+   */
+  zaak: string;
+  /**
+   * betrokkene
+   * URL-referentie naar een betrokkene gerelateerd aan de ZAAK.
+   * @format uri
+   * @maxLength 1000
+   */
+  betrokkene?: string;
+  /**
+   * betrokkene type
+   * Type van de `betrokkene`.
+   *
+   * Uitleg bij mogelijke waarden:
+   *
+   * * `natuurlijk_persoon` - Natuurlijk persoon
+   * * `niet_natuurlijk_persoon` - Niet-natuurlijk persoon
+   * * `vestiging` - Vestiging
+   * * `organisatorische_eenheid` - Organisatorische eenheid
+   * * `medewerker` - Medewerker
+   */
+  betrokkeneType: BetrokkeneTypeEnum;
+  /**
+   * afwijkende naam betrokkene
+   * De naam van de betrokkene waaronder deze in relatie tot de zaak aangesproken wil worden.
+   * @maxLength 625
+   */
+  afwijkendeNaamBetrokkene?: string;
+  /**
+   * roltype
+   * URL-referentie naar een roltype binnen het ZAAKTYPE van de ZAAK.
+   * @format uri
+   * @maxLength 1000
+   */
+  roltype: string;
+  /**
+   * omschrijving
+   * Omschrijving van de aard van de ROL, afgeleid uit het ROLTYPE.
+   */
+  omschrijving: string;
+  /**
+   * omschrijving generiek
+   * Algemeen gehanteerde benaming van de aard van de ROL, afgeleid uit het ROLTYPE.
+   *
+   * Uitleg bij mogelijke waarden:
+   *
+   * * `adviseur` - (Adviseur) Kennis in dienst stellen van de behandeling van (een deel van) een zaak.
+   * * `behandelaar` - (Behandelaar) De vakinhoudelijke behandeling doen van (een deel van) een zaak.
+   * * `belanghebbende` - (Belanghebbende) Vanuit eigen en objectief belang rechtstreeks betrokken zijn bij de behandeling en/of de uitkomst van een zaak.
+   * * `beslisser` - (Beslisser) Nemen van besluiten die voor de uitkomst van een zaak noodzakelijk zijn.
+   * * `initiator` - (Initiator) Aanleiding geven tot de start van een zaak ..
+   * * `klantcontacter` - (Klantcontacter) Het eerste aanspreekpunt zijn voor vragen van burgers en bedrijven ..
+   * * `zaakcoordinator` - (Zaakcoördinator) Er voor zorg dragen dat de behandeling van de zaak in samenhang uitgevoerd wordt conform de daarover gemaakte afspraken.
+   * * `mede_initiator` - Mede-initiator
+   */
+  omschrijvingGeneriek: string;
+  /**
+   * roltoelichting
+   * @maxLength 1000
+   */
+  roltoelichting: string;
+  /**
+   * registratiedatum
+   * De datum waarop dit object is geregistreerd.
+   * @format date-time
+   */
+  registratiedatum: string;
+  /**
+   * indicatie machtiging
+   * Indicatie machtiging
+   *
+   * Uitleg bij mogelijke waarden:
+   *
+   * * `gemachtigde` - De betrokkene in de rol bij de zaak is door een andere betrokkene bij dezelfde zaak gemachtigd om namens hem of haar te handelen
+   * * `machtiginggever` - De betrokkene in de rol bij de zaak heeft een andere betrokkene bij dezelfde zaak gemachtigd om namens hem of haar te handelen
+   */
+  indicatieMachtiging?: IndicatieMachtigingEnum | BlankEnum;
+  /**
+   * contactpersoonRol
+   * De gegevens van de persoon die anderen desgevraagd in contact brengt met medewerkers van de BETROKKENE, een NIET-NATUURLIJK PERSOON of VESTIGING zijnde, of met BETROKKENE zelf, een NATUURLIJK PERSOON zijnde , vanuit het belang van BETROKKENE in haar ROL bij een ZAAK.
+   */
+  contactpersoonRol?: ContactPersoonRol | null;
+  /**
+   * statussen
+   * De BETROKKENE die in zijn/haar ROL in een ZAAK heeft geregistreerd dat STATUSsen in die ZAAK bereikt zijn.
+   * @uniqueItems true
+   */
+  statussen: string[];
+  _expand?: RolEmbedded;
+}
 
 export type RolExpanded = Rol & {
   _expand?: RolEmbedded;
@@ -3146,19 +3249,19 @@ export type MaatschappelijkeActiviteitZaakObject = BaseZaakObject & ObjectIdenti
 export type MaatschappelijkeActiviteitPatchedZaakObject = BasePatchedZaakObject &
   ObjectIdentificatieObjectMaatschappelijkeActiviteit;
 
-export type MedewerkerRol = BaseRol & BetrokkeneIdentificatieRolMedewerker;
+export type MedewerkerRol = Rol & BetrokkeneIdentificatieRolMedewerker;
 
 export type MedewerkerZaakObject = BaseZaakObject & BetrokkeneIdentificatieRolMedewerker;
 
 export type MedewerkerPatchedZaakObject = BasePatchedZaakObject & BetrokkeneIdentificatieRolMedewerker;
 
-export type NatuurlijkPersoonRol = BaseRol & BetrokkeneIdentificatieRolNatuurlijkPersoon;
+export type NatuurlijkPersoonRol = Rol & BetrokkeneIdentificatieRolNatuurlijkPersoon;
 
 export type NatuurlijkPersoonZaakObject = BaseZaakObject & BetrokkeneIdentificatieRolNatuurlijkPersoon;
 
 export type NatuurlijkPersoonPatchedZaakObject = BasePatchedZaakObject & BetrokkeneIdentificatieRolNatuurlijkPersoon;
 
-export type NietNatuurlijkPersoonRol = BaseRol & BetrokkeneIdentificatieRolNietNatuurlijkPersoon;
+export type NietNatuurlijkPersoonRol = Rol & BetrokkeneIdentificatieRolNietNatuurlijkPersoon;
 
 export type NietNatuurlijkPersoonZaakObject = BaseZaakObject & BetrokkeneIdentificatieRolNietNatuurlijkPersoon;
 
@@ -3309,7 +3412,7 @@ export type OpenbareRuimteZaakObject = BaseZaakObject & ObjectIdentificatieObjec
 
 export type OpenbareRuimtePatchedZaakObject = BasePatchedZaakObject & ObjectIdentificatieObjectOpenbareRuimte;
 
-export type OrganisatorischeEenheidRol = BaseRol & BetrokkeneIdentificatieRolOrganisatorischeEenheid;
+export type OrganisatorischeEenheidRol = Rol & BetrokkeneIdentificatieRolOrganisatorischeEenheid;
 
 export type OrganisatorischeEenheidZaakObject = BaseZaakObject & BetrokkeneIdentificatieRolOrganisatorischeEenheid;
 
@@ -3341,7 +3444,7 @@ export type TerreindeelZaakObject = BaseZaakObject & ObjectIdentificatieObjectTe
 
 export type TerreindeelPatchedZaakObject = BasePatchedZaakObject & ObjectIdentificatieObjectTerreindeel;
 
-export type VestigingRol = BaseRol & BetrokkeneIdentificatieRolVestiging;
+export type VestigingRol = Rol & BetrokkeneIdentificatieRolVestiging;
 
 export type VestigingZaakObject = BaseZaakObject & BetrokkeneIdentificatieRolVestiging;
 
@@ -3483,122 +3586,6 @@ interface BasePatchedZaakObject {
 
 type BasePatchedZaakObjectObjectTypeMapping<Key, Type> = {
   objectType: Key;
-} & Type;
-
-interface BaseRol {
-  /**
-   * url
-   * URL-referentie naar dit object. Dit is de unieke identificatie en locatie van dit object.
-   * @format uri
-   * @minLength 1
-   * @maxLength 1000
-   */
-  url: string;
-  /**
-   * uuid
-   * Unieke resource identifier (UUID4)
-   * @format uuid
-   */
-  uuid: string;
-  /**
-   * zaak
-   * URL-referentie naar de ZAAK.
-   * @format uri
-   * @minLength 1
-   * @maxLength 1000
-   */
-  zaak: string;
-  /**
-   * betrokkene
-   * URL-referentie naar een betrokkene gerelateerd aan de ZAAK.
-   * @format uri
-   * @maxLength 1000
-   */
-  betrokkene?: string;
-  /**
-   * betrokkene type
-   * Type van de `betrokkene`.
-   *
-   * Uitleg bij mogelijke waarden:
-   *
-   * * `natuurlijk_persoon` - Natuurlijk persoon
-   * * `niet_natuurlijk_persoon` - Niet-natuurlijk persoon
-   * * `vestiging` - Vestiging
-   * * `organisatorische_eenheid` - Organisatorische eenheid
-   * * `medewerker` - Medewerker
-   */
-  betrokkeneType: BetrokkeneTypeEnum;
-  /**
-   * afwijkende naam betrokkene
-   * De naam van de betrokkene waaronder deze in relatie tot de zaak aangesproken wil worden.
-   * @maxLength 625
-   */
-  afwijkendeNaamBetrokkene?: string;
-  /**
-   * roltype
-   * URL-referentie naar een roltype binnen het ZAAKTYPE van de ZAAK.
-   * @format uri
-   * @maxLength 1000
-   */
-  roltype: string;
-  /**
-   * omschrijving
-   * Omschrijving van de aard van de ROL, afgeleid uit het ROLTYPE.
-   */
-  omschrijving: string;
-  /**
-   * omschrijving generiek
-   * Algemeen gehanteerde benaming van de aard van de ROL, afgeleid uit het ROLTYPE.
-   *
-   * Uitleg bij mogelijke waarden:
-   *
-   * * `adviseur` - (Adviseur) Kennis in dienst stellen van de behandeling van (een deel van) een zaak.
-   * * `behandelaar` - (Behandelaar) De vakinhoudelijke behandeling doen van (een deel van) een zaak.
-   * * `belanghebbende` - (Belanghebbende) Vanuit eigen en objectief belang rechtstreeks betrokken zijn bij de behandeling en/of de uitkomst van een zaak.
-   * * `beslisser` - (Beslisser) Nemen van besluiten die voor de uitkomst van een zaak noodzakelijk zijn.
-   * * `initiator` - (Initiator) Aanleiding geven tot de start van een zaak ..
-   * * `klantcontacter` - (Klantcontacter) Het eerste aanspreekpunt zijn voor vragen van burgers en bedrijven ..
-   * * `zaakcoordinator` - (Zaakcoördinator) Er voor zorg dragen dat de behandeling van de zaak in samenhang uitgevoerd wordt conform de daarover gemaakte afspraken.
-   * * `mede_initiator` - Mede-initiator
-   */
-  omschrijvingGeneriek: string;
-  /**
-   * roltoelichting
-   * @maxLength 1000
-   */
-  roltoelichting: string;
-  /**
-   * registratiedatum
-   * De datum waarop dit object is geregistreerd.
-   * @format date-time
-   */
-  registratiedatum: string;
-  /**
-   * indicatie machtiging
-   * Indicatie machtiging
-   *
-   * Uitleg bij mogelijke waarden:
-   *
-   * * `gemachtigde` - De betrokkene in de rol bij de zaak is door een andere betrokkene bij dezelfde zaak gemachtigd om namens hem of haar te handelen
-   * * `machtiginggever` - De betrokkene in de rol bij de zaak heeft een andere betrokkene bij dezelfde zaak gemachtigd om namens hem of haar te handelen
-   */
-  indicatieMachtiging?: IndicatieMachtigingEnum | BlankEnum;
-  /**
-   * contactpersoonRol
-   * De gegevens van de persoon die anderen desgevraagd in contact brengt met medewerkers van de BETROKKENE, een NIET-NATUURLIJK PERSOON of VESTIGING zijnde, of met BETROKKENE zelf, een NATUURLIJK PERSOON zijnde , vanuit het belang van BETROKKENE in haar ROL bij een ZAAK.
-   */
-  contactpersoonRol?: ContactPersoonRol | null;
-  /**
-   * statussen
-   * De BETROKKENE die in zijn/haar ROL in een ZAAK heeft geregistreerd dat STATUSsen in die ZAAK bereikt zijn.
-   * @uniqueItems true
-   */
-  statussen: string[];
-  _expand?: RolEmbedded;
-}
-
-type BaseRolBetrokkeneTypeMapping<Key, Type> = {
-  betrokkeneType: Key;
 } & Type;
 
 interface BaseZaakObject {
