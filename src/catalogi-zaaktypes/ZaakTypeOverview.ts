@@ -51,15 +51,15 @@ export interface ZaakTypeOverview {
   apiOmgeving?: string;
 
 
-  statusTypen:{ url: string; kenmerk?: string; omschrijving?: string; default?: boolean}[];
-  resultaatTypen: { url: string; kenmerk?: string; omschrijving?: string; default?: boolean}[];
-  eigenschappen: { url: string; kenmerk?: string; naam?: string; default?: boolean}[];
-  informatieObjectTypen?: { url: string; kenmerk?: string; omschrijving?: string;default?: boolean}[];
-  rolTypen: { url: string; kenmerk?: string; omschrijving?: string; default?: boolean}[];
+  statusTypen: { url: string; kenmerk?: string; omschrijving?: string; default?: boolean }[];
+  resultaatTypen: { url: string; kenmerk?: string; omschrijving?: string; default?: boolean }[];
+  eigenschappen: { url: string; kenmerk?: string; naam?: string; default?: boolean }[];
+  informatieObjectTypen?: { url: string; kenmerk?: string; omschrijving?: string;default?: boolean }[];
+  rolTypen: { url: string; kenmerk?: string; omschrijving?: string; default?: boolean }[];
   /**
      * De laatste versie van het gehele zaaktype object indien gewenst
      * Op deze manier kan het gehele origineel snel bekeken worden
      */
-  completeZaakType? : catalogi.ZaakType;
+  completeZaakType?: catalogi.ZaakType;
 }
 
