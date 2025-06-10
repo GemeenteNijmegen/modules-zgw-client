@@ -8,13 +8,13 @@ const project = new GemeenteNijmegenTsPackage({
   description: 'Package that generates zgw clients and helpers.',
   repository: 'https://github.com/GemeenteNijmegen/modules-zgw-client',
   deps: [
-    'swagger-typescript-api', // Generates client, always has to be mocked in tests - module not commonjs
     'ts-node', // To run class in github workflow
     'axios', // Clients generated with axios, fetch does not generate a proper class
     'jsonwebtoken',
     'projen', // Needed in deps to make client-updates-custom-workflow
   ],
   devDeps: [
+    'swagger-typescript-api', // Generates client, always has to be mocked in tests - module not commonjs
     '@gemeentenijmegen/projen-project-type',
     'dotenv', // Needed to use .env vars
     '@types/jsonwebtoken',
@@ -43,7 +43,7 @@ const project = new GemeenteNijmegenTsPackage({
   gitignore: ['**/output/', '**/testmockforjest-generated-client/'],
   projenrcTs: true,
 });
-
+project.addPackageIgnore('src/client-generator/**');
 // Custom workflow to update zgw clients based on vng gemma-zaken github
 // Only used in this project - otherwise it would be located in modules projen
 addZgwClientsUpdateWorkflow(project);

@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'path';
+/* eslint-disable import/no-extraneous-dependencies */
 import { generateApi } from 'swagger-typescript-api';
 import { partialInputHook } from './partialInputHook';
 import { rolFixHook } from './rolFixHook';
