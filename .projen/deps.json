@@ -76,6 +76,10 @@
       "type": "build"
     },
     {
+      "name": "swagger-typescript-api",
+      "type": "build"
+    },
+    {
       "name": "ts-jest",
       "type": "build"
     },
@@ -97,10 +101,6 @@
     },
     {
       "name": "projen",
-      "type": "runtime"
-    },
-    {
-      "name": "swagger-typescript-api",
       "type": "runtime"
     },
     {
