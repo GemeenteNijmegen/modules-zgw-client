@@ -44,7 +44,7 @@
     "jest-junit": "^16",
     "projen": "^0.92.10",
     "swagger-typescript-api": "^13.2.1",
-    "ts-jest": "^29.3.4",
+    "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
