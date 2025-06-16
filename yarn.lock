@@ -284,12 +284,12 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@biomejs/js-api@^0.8.0-beta.3":
+"@biomejs/js-api@0.8.0-beta.3":
   version "0.8.0-beta.3"
   resolved "https://registry.yarnpkg.com/@biomejs/js-api/-/js-api-0.8.0-beta.3.tgz#25e0bc41ddbe00ee1e7922d427fffaf9f335d334"
   integrity sha512-Rlljal9Wwdt2OgOnTUdlvzUEVKNzTCeEPekXTjQT6uwZE21akpviljo5u3HNPkW55Sh8zqHDZ/3d9gI4yoEv2A==
 
-"@biomejs/wasm-nodejs@^2.0.0-beta.6":
+"@biomejs/wasm-nodejs@2.0.0-beta.6":
   version "2.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/@biomejs/wasm-nodejs/-/wasm-nodejs-2.0.0-beta.6.tgz#78f2b1714a7ebe3289a8295ab80985eeb24d50af"
   integrity sha512-UI8uhz8YUjROBqr8OX3M8aK5Dw+MQfpE3D8sODCoE1CHH/4lvYdYksO/hU6qUe7qOYTI/Dyf2/DOQA5XRvRtAg==
@@ -5420,13 +5420,13 @@ swagger-schema-official@2.0.0-bab6bed:
   resolved "https://registry.yarnpkg.com/swagger-schema-official/-/swagger-schema-official-2.0.0-bab6bed.tgz#70070468d6d2977ca5237b2e519ca7d06a2ea3fd"
   integrity sha512-rCC0NWGKr/IJhtRuPq/t37qvZHI/mH4I4sxflVM+qgVe5Z2uOCivzWaVbuioJaB61kvm5UvB7b49E+oBY0M8jA==
 
-swagger-typescript-api@^13.2.1:
-  version "13.2.1"
-  resolved "https://registry.yarnpkg.com/swagger-typescript-api/-/swagger-typescript-api-13.2.1.tgz#f8ca5892b939de4de9547e9afd5454ef87430335"
-  integrity sha512-2mf2rM0JGnNFFeJ3GUVg63H3iG/1XKlYEI1EM/BODz6ts0Vyx2quZtUKE3VCeZNSGklbPFbiMW4ORl/qpLXEhQ==
+swagger-typescript-api@^13.2.2:
+  version "13.2.2"
+  resolved "https://registry.yarnpkg.com/swagger-typescript-api/-/swagger-typescript-api-13.2.2.tgz#409d0d5c49a49fbe2170ddc5a41c204c62f38c59"
+  integrity sha512-g67Bn18qujAu7L7EWexjR4R0MDiSYo+HT5EkV/5IJ5HuuP8N8Pcj4mrbBY1GX5BTeGGw7Vd5nSE9jgLj0IxinQ==
   dependencies:
-    "@biomejs/js-api" "^0.8.0-beta.3"
-    "@biomejs/wasm-nodejs" "^2.0.0-beta.6"
+    "@biomejs/js-api" "0.8.0-beta.3"
+    "@biomejs/wasm-nodejs" "2.0.0-beta.6"
     "@types/swagger-schema-official" "^2.0.25"
     c12 "^3.0.4"
     citty "^0.1.6"
