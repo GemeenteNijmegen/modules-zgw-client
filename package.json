@@ -42,7 +42,7 @@
     "eslint-plugin-import": "^2.31.0",
     "jest": "^29.7.0",
     "jest-junit": "^16",
-    "projen": "^0.92.11",
+    "projen": "^0.93.0",
     "swagger-typescript-api": "^13.2.3",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
@@ -51,7 +51,7 @@
   "dependencies": {
     "axios": "^1.10.0",
     "jsonwebtoken": "^9.0.2",
-    "projen": "^0.92.11",
+    "projen": "^0.93.0",
     "ts-node": "^10.9.2"
   },
   "main": "lib/index.js",
