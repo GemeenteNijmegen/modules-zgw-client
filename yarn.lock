@@ -421,10 +421,10 @@
   resolved "https://registry.yarnpkg.com/@exodus/schemasafe/-/schemasafe-1.3.0.tgz#731656abe21e8e769a7f70a4d833e6312fe59b7f"
   integrity sha512-5Aap/GaRupgNx/feGBwLLTVv8OQFfv3pq2lPRzPg9R+IOBnDgghTGW7l7EuVXOvg5cc/xSAlRW8rBrjIC3Nvqw==
 
-"@gemeentenijmegen/projen-project-type@^1.11.8":
-  version "1.11.8"
-  resolved "https://registry.yarnpkg.com/@gemeentenijmegen/projen-project-type/-/projen-project-type-1.11.8.tgz#b2505252da6816338df5b92fbc51f6b435ea628d"
-  integrity sha512-SfSLInSig8X5I7xyCrCiZSuwgk8Lw+9q7GuaNrtuNnGCScxnEe5cLcPZYd73usJUkB8isN/OcN0OppUXrx9cug==
+"@gemeentenijmegen/projen-project-type@^1.11.10":
+  version "1.11.10"
+  resolved "https://registry.yarnpkg.com/@gemeentenijmegen/projen-project-type/-/projen-project-type-1.11.10.tgz#d06643d09b1239c995550f69d15a36991a020b9b"
+  integrity sha512-O9jzKIB2QvbkKAUqW9GUb1DmDT7dIeGl/h8qsIIFH3MjacEqWPTrgfCrJae+N9hr/SbSS6cJjy8jgSY20NqJrw==
 
 "@humanfs/core@^0.19.1":
   version "0.19.1"
