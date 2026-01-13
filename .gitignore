@@ -55,5 +55,6 @@ junit.xml
 !/.eslintrc.json
 !/.github/workflows/emergency.yml
 !/.github/workflows/auto-merge.yml
+!/.nvmrc
 !/.github/workflows/update-zgw-clients.yml
 !/.projenrc.ts
