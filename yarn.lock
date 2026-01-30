@@ -382,10 +382,10 @@
   resolved "https://registry.yarnpkg.com/@exodus/schemasafe/-/schemasafe-1.3.0.tgz#731656abe21e8e769a7f70a4d833e6312fe59b7f"
   integrity sha512-5Aap/GaRupgNx/feGBwLLTVv8OQFfv3pq2lPRzPg9R+IOBnDgghTGW7l7EuVXOvg5cc/xSAlRW8rBrjIC3Nvqw==
 
-"@gemeentenijmegen/projen-project-type@^1.11.11":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@gemeentenijmegen/projen-project-type/-/projen-project-type-1.12.0.tgz#61b4c8b8d4c9b638c5a69322f7763f54a214a2b4"
-  integrity sha512-dLGFm/BSKWQI9hF/EkZptP6vZzlSrW9lRPLxFINEaB2vwGmLLjmykUwKHfguaS7q57or9ewLmpBC6jdD9p7DhQ==
+"@gemeentenijmegen/projen-project-type@^1.12.1":
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/@gemeentenijmegen/projen-project-type/-/projen-project-type-1.12.1.tgz#07991a46a14a60d608d636497975572c188f2709"
+  integrity sha512-9YxvCK5XbCKpXDtSo3NU3MdpZTh6G1MLjnbgx/2DlxpG5KfdNalXrRonW8zVO/ZqoE8r/JAYvdJM564djVG1Kg==
 
 "@humanfs/core@^0.19.1":
   version "0.19.1"
@@ -908,7 +908,7 @@
   dependencies:
     undici-types "~7.16.0"
 
-"@types/node@^22.19.3":
+"@types/node@^22.19.7":
   version "22.19.7"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-22.19.7.tgz#434094ee1731ae76c16083008590a5835a8c39c1"
   integrity sha512-MciR4AKGHWl7xwxkBa6xUGxQJ4VBOmPTF7sL+iGzuahOFaO0jHCsuEfS80pan1ef4gWId1oWOweIhrDEYLuaOw==
@@ -1339,7 +1339,7 @@ axios-mock-adapter@^2.1.0:
     fast-deep-equal "^3.1.3"
     is-buffer "^2.0.5"
 
-axios@^1.13.2:
+axios@^1.13.4:
   version "1.13.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.13.4.tgz#15d109a4817fb82f73aea910d41a2c85606076bc"
   integrity sha512-1wVkUaAO6WyaYtCkcYCOx12ZgpGf9Zif+qXa4n+oYzK558YryKqiL6UWwd5DqiH3VRW0GYhTZQ/vlgJrCoNQlg==
@@ -2109,9 +2109,9 @@ ecdsa-sig-formatter@1.0.11:
     safe-buffer "^5.0.1"
 
 electron-to-chromium@^1.5.263:
-  version "1.5.279"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.279.tgz#67dfdeb22fd81412d0d18d1d9b2c749e9b8945cb"
-  integrity sha512-0bblUU5UNdOt5G7XqGiJtpZMONma6WAfq9vsFmtn9x1+joAObr6x1chfqyxFSDCAFwFhCQDrqeAr6MYdpwJ9Hg==
+  version "1.5.282"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.5.282.tgz#6695816e5b170210d6aa07561546ed7d97347630"
+  integrity sha512-FCPkJtpst28UmFzd903iU7PdeVTfY0KAeJy+Lk0GLZRwgwYHn/irRcaCbQQOmr5Vytc/7rcavsYLvTM8RiHYhQ==
 
 emittery@^0.13.1:
   version "0.13.1"
@@ -4537,10 +4537,10 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
-projen@^0.98.33:
-  version "0.98.34"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.98.34.tgz#ff37f058d75a37f7e1fb059fd7e1d95183d629ed"
-  integrity sha512-52JX/fz5iZiy+F5r5MJjpLMtUM1sryQZVGGAVRruR6G6r8J8L/QBLXKnjss7gLPs0hbAcsCx1Zu81lh6Vnm0rA==
+projen@^0.99.9:
+  version "0.99.9"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.99.9.tgz#62dcffdc615b19e203e7889204aadb33c4edf062"
+  integrity sha512-yg+0VCwfQyeqwclPuono0vNYKOAsPoO+CCh7xapI2dru8Xw5pEtNs+LEIfFd2pMwEUDTn7QyN/Jt4IfP9jLEzw==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"
