@@ -305,10 +305,10 @@
   resolved "https://registry.yarnpkg.com/@biomejs/js-api/-/js-api-4.0.0.tgz#1dac807c2c8e580a69bce141a0628e1a036598dd"
   integrity sha512-EOArR/6drRzM1/hwOIz1pZw90FL31Ud4Y7hEHGWVtMNmAwS9SrwZ8hMENGlLVXCeGW/kL46p8kX7eO6x9Nmezg==
 
-"@biomejs/wasm-nodejs@2.4.5":
-  version "2.4.5"
-  resolved "https://registry.yarnpkg.com/@biomejs/wasm-nodejs/-/wasm-nodejs-2.4.5.tgz#84f3b06c1280dfef629340378f4bdd45c413de59"
-  integrity sha512-OmZHUkfV4S1qCKMeL7UN437I3TzK8dOHMKdj1jXGqk0FcDQNqmRc0B6rXm5lPJEyWup6D9+Hnt9ktBB7ENVscA==
+"@biomejs/wasm-nodejs@2.4.6":
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/@biomejs/wasm-nodejs/-/wasm-nodejs-2.4.6.tgz#1f6849de14cbd1ddee37856f2596f257dd9f9a45"
+  integrity sha512-YRhedzOovXDMs+ZKzi/ZcDTefZIMcrp3z0Ruq+abrNb622aYUh/2m1Ooj8BcG4anGUGR6o+dTCbvAEx9vc74hw==
 
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
@@ -2686,9 +2686,9 @@ flat-cache@^4.0.0:
     keyv "^4.5.4"
 
 flatted@^3.2.9:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.4.tgz#0986e681008f0f13f58e18656c47967682db5ff6"
-  integrity sha512-3+mMldrTAPdta5kjX2G2J7iX4zxtnwpdA8Tr2ZSjkyPSanvbZAcy6flmtnXbEybHrDcU9641lxrMfFuUxVz9vA==
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.4.0.tgz#92ab2efec9b272eb85a3a25a106c3afbbc990d8b"
+  integrity sha512-kC6Bb+ooptOIvWj5B63EQWkF0FEnNjV2ZNkLMLZRDDduIiWeFF4iKnslwhiWxjAdbg4NzTNo6h0qLuvFrcx+Sw==
 
 follow-redirects@^1.15.11:
   version "1.15.11"
@@ -5320,14 +5320,14 @@ swagger-schema-official@2.0.0-bab6bed:
   resolved "https://registry.yarnpkg.com/swagger-schema-official/-/swagger-schema-official-2.0.0-bab6bed.tgz#70070468d6d2977ca5237b2e519ca7d06a2ea3fd"
   integrity sha512-rCC0NWGKr/IJhtRuPq/t37qvZHI/mH4I4sxflVM+qgVe5Z2uOCivzWaVbuioJaB61kvm5UvB7b49E+oBY0M8jA==
 
-swagger-typescript-api@^13.3.0:
-  version "13.3.0"
-  resolved "https://registry.yarnpkg.com/swagger-typescript-api/-/swagger-typescript-api-13.3.0.tgz#f65f152620a42135547696935ea36a962c7f380d"
-  integrity sha512-/Y7/bfkhDGs2tJp3TpJRNCAsZcVYmgmzpbqtWrS2UN3Ie8bpdryNj+rNQ172dIPHDg4wftTyOxlFR5C5vDfy4w==
+swagger-typescript-api@^13.3.1:
+  version "13.3.1"
+  resolved "https://registry.yarnpkg.com/swagger-typescript-api/-/swagger-typescript-api-13.3.1.tgz#dfe1d2ca08037dd02349dfdfb7b16b63bd859b18"
+  integrity sha512-fSYf55kY0nV2TxS131h35sl+HaLNiZabF+A5ffFC7TCMlHTAVCSlmsh3MPXFaWYk8CcMLSFg4q4vDlWkhBDdAA==
   dependencies:
     "@apidevtools/swagger-parser" "12.1.0"
     "@biomejs/js-api" "4.0.0"
-    "@biomejs/wasm-nodejs" "2.4.5"
+    "@biomejs/wasm-nodejs" "2.4.6"
     "@types/swagger-schema-official" "^2.0.25"
     c12 "^3.3.3"
     citty "^0.2.1"
