@@ -108,7 +108,8 @@
       "name": "eslint",
       "description": "Runs eslint against the codebase",
       "env": {
-        "ESLINT_USE_FLAT_CONFIG": "false"
+        "ESLINT_USE_FLAT_CONFIG": "false",
+        "NODE_NO_WARNINGS": "1"
       },
       "steps": [
         {
@@ -231,7 +232,7 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@gemeentenijmegen/projen-project-type,@types/jest,@types/jsonwebtoken,@types/node,axios-mock-adapter,dotenv,eslint-import-resolver-typescript,eslint-plugin-import,jest,projen,swagger-typescript-api,ts-jest,ts-node,typescript,axios,jsonwebtoken"
+          "exec": "npx npm-check-updates@18 --upgrade --target=minor --peer --no-deprecated --dep=dev,peer,prod,optional --filter=@gemeentenijmegen/projen-project-type,@types/jest,@types/jsonwebtoken,@types/node,axios-mock-adapter,dotenv,eslint-import-resolver-typescript,eslint-plugin-import,jest,projen,swagger-typescript-api,ts-jest,ts-node,typescript,axios,jsonwebtoken"
         },
         {
           "exec": "yarn install --check-files"
